@@ -129,7 +129,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <excludeDevtools>true</excludeDevtools>
+          <excludeDevtools>false</excludeDevtools>
         </configuration>
       </plugin>
       <plugin>
