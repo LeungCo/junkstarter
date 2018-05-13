@@ -1,3 +1,19 @@
+# Junk Starter
+## Getting Started
+
+### Backend
+
+_Todo_
+
+### Frontend
+
+1. `cd` into `app/react-app`
+2. Run `yarn start` to begin the local development server
+
+The local dev server has hot reloading enabled so any changes made to source files will cause the page to refresh dynamically for you.
+
+# Initial README
+
 ![](atsea_store.png)
 #  AtSea Shop Demonstration Application
 
