@@ -1,6 +1,6 @@
 FROM node:latest AS storefront
-WORKDIR /usr/src/atsea/app/react-app
-COPY react-app .
+WORKDIR /usr/src/atsea/app/frontend
+COPY frontend .
 RUN yarn
 RUN yarn build
 
