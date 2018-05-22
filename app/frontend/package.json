@@ -17,7 +17,7 @@
     "cross-spawn": "4.0.2",
     "css-loader": "0.26.1",
     "detect-port": "1.1.0",
-    "dotenv": "2.0.0",
+    "dotenv": "^5.0.1",
     "enzyme": "^2.8.0",
     "eslint": "3.16.1",
     "eslint-config-react-app": "^0.6.2",
@@ -31,7 +31,7 @@
     "fs-extra": "0.30.0",
     "html-webpack-plugin": "2.24.0",
     "http-proxy-middleware": "0.17.3",
-    "jest": "18.1.0",
+    "jest": "^22.4.4",
     "json-loader": "0.5.4",
     "object-assign": "4.1.1",
     "postcss-loader": "1.2.2",
@@ -66,9 +66,9 @@
     "velocity-react": "^1.2.1"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
+    "start": "node -r dotenv/config scripts/start.js",
+    "build": "node -r dotenv/config scripts/build.js",
+    "test": "node -r dotenv/config scripts/test.js",
     "cypress": "node scripts/cypress-check.js"
   },
   "jest": {
