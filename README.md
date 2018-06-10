@@ -2,6 +2,10 @@
 
 This project has been forked from [AtSea Sample Shop](https://github.com/dockersamples/atsea-sample-shop-app).
 
+# How to use Documentation
+
+See the introduction page [here](./docs/README.md).
+
 # Backend - Getting Started
 
 ## Requirements
@@ -66,7 +70,3 @@ Documentation for REST calls: [REST API](./REST.md)
 3. The default page should open in your browser which is generally `http://localhost:3000`
 
 > The local dev server has hot reloading enabled so any changes made to source files will cause the page to refresh dynamically for you.
-
-## How to use Documentation
-
-See the introduction page [here](./docs/README.md).
