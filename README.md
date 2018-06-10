@@ -1,39 +1,12 @@
 # Junk Starter
-## Getting Started
 
-### Backend
+This project has been forked from [AtSea Sample Shop](https://github.com/dockersamples/atsea-sample-shop-app).
 
-_Todo_
+# Backend - Getting Started
 
-### Frontend
-
-1. `cd` into `app/react-app`
-2. Run `yarn start` to begin the local development server
-
-The local dev server has hot reloading enabled so any changes made to source files will cause the page to refresh dynamically for you.
-
-## How to use Documentation
-
-See the introduction page [here](./docs/README.md).
-
-# Initial README
-
-![](atsea_store.png)
-#  AtSea Shop Demonstration Application
-
-The AtSea Shop is a demonstration application comprised of: 
-
-* Java REST application written using Spring-Boot, 
-* a database for product inventory, customer data, and orders,
-* a React shopping cart,
-* a NGINX reverse proxy implementing https,
-* a payment gateway to simulate certificate management
-
-# Requirements
+## Requirements
 
 This example uses features in Docker 17.05 CE Edge. Install this version to run the example.
-
-# Building and Running the AtSea Shop
 
 ## Secrets
 
@@ -59,7 +32,7 @@ echo staging | docker secret create staging_token -
 
 ## Run as an application
 
-To run the AtSea shop as an application:
+To run Junk Starter as an application:
 ```
 docker-compose up --build
 ```
@@ -68,7 +41,7 @@ docker-compose up --build
 ```
 #If you need to create a Swarm
 docker swarm init
-docker stack deploy -c docker-stack.yml atsea
+docker stack deploy -c docker-stack.yml junkstarter
 ```
 
 ## A simplified development environment
@@ -78,9 +51,7 @@ This compose file creates a simplified development environment consisting of onl
 docker-compose --file docker-compose-dev.yml up --build
 ```
 
-
-
-## The AtSea Shop 
+## The Application
 
 The URL for the content is `http://localhost:8080/`
 
@@ -88,4 +59,14 @@ The URL for the content is `http://localhost:8080/`
 
 Documentation for REST calls: [REST API](./REST.md)
 
+# Frontend - Getting Started
 
+1. `cd` into `app/frontend`
+2. Run `yarn start` to begin the local development server
+3. The default page should open in your browser which is generally `http://localhost:3000`
+
+> The local dev server has hot reloading enabled so any changes made to source files will cause the page to refresh dynamically for you.
+
+## How to use Documentation
+
+See the introduction page [here](./docs/README.md).
