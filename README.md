@@ -12,6 +12,10 @@ _Todo_
 
 The local dev server has hot reloading enabled so any changes made to source files will cause the page to refresh dynamically for you.
 
+## How to use Documentation
+
+See the introduction page [here](./docs/README.md).
+
 # Initial README
 
 ![](atsea_store.png)
