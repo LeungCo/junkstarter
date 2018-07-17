@@ -1,16 +1,16 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-	name: junkstarter
+  name: junkstarter
 spec:
-	replicas: 1
-	template:
-		metadata:
-			labels:
-				app: junkstarter
-		spec:
-			containers:
-				- name: junkstarter-api
-					image: martinwheeler/junkstarter-api
-					ports:
-					- containerPort: 80
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: junkstarter
+    spec:
+      containers:
+        - name: junkstarter-api
+          image: martinwheeler/junkstarter-api
+          ports:
+          - containerPort: 80
