@@ -49,7 +49,7 @@ public class JpaConfiguration {
 		DataSourceProperties dataSourceProperties = new DataSourceProperties();
 
 		// Set password to connect to postgres using Docker secrets.
-		try(BufferedReader br = new BufferedReader(new FileReader("/run/secrets/postgres_password"))) {
+		try(BufferedReader br = new BufferedReader(new FileReader("/run/secrets/postgres-password"))) {
 			StringBuilder sb = new StringBuilder();
 			String line = br.readLine();
 
