@@ -26,7 +26,7 @@ spec:
               mountPath: "/run/secrets"
               readOnly: true
       volumes:
-        - name: junkstarter-secrets
+      - name: junkstarter-secrets
         secret:
           secretName: postgres-password
 
