@@ -5,12 +5,12 @@ metadata:
 spec:
 	replicas: 1
 	template:
-    	metadata:
-    		labels:
-        	app: junkstarter
-    	spec:
-    		containers:
-    		- name: junkstarter-api
-        		image: martinwheeler/junkstarter-api
-        		ports:
-        		- containerPort: 80
+		metadata:
+			labels:
+				app: junkstarter
+		spec:
+			containers:
+				- name: junkstarter-api
+					image: martinwheeler/junkstarter-api
+					ports:
+					- containerPort: 80
