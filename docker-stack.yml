@@ -7,10 +7,10 @@ services:
       - "80:80"
       - "443:443"
     secrets:
-      - source: revprox_cert
-        target: revprox_cert
-      - source: revprox_key
-        target: revprox_key
+      - source: revprox-cert
+        target: revprox-cert
+      - source: revprox-key
+        target: revprox-key
     networks:
       - front-tier
 
@@ -18,12 +18,12 @@ services:
     image: dockersamples/atsea_db
     environment:
       POSTGRES_USER: gordonuser
-      POSTGRES_DB_PASSWORD_FILE: /run/secrets/postgres_password
+      POSTGRES_DB_PASSWORD_FILE: /run/secrets/postgres-password
       POSTGRES_DB: atsea
     networks:
       - back-tier
     secrets:
-      - postgres_password
+      - postgres-password
     deploy:
       placement:
         constraints:
@@ -49,7 +49,7 @@ services:
         max_attempts: 3
         window: 120s
     secrets:
-      - postgres_password
+      - postgres-password
 
   visualizer:
     image: dockersamples/visualizer:stable
@@ -68,8 +68,8 @@ services:
   payment_gateway:
     image: dockersamples/atseasampleshopapp_payment_gateway
     secrets:
-      - source: staging_token
-        target: payment_token
+      - source: staging-token
+        target: payment-token
     networks:
       - payment
     deploy:
@@ -89,11 +89,11 @@ networks:
       encrypted: 'yes'
 
 secrets:
-  postgres_password:
+  postgres-password:
     external: true
-  staging_token:
+  staging-token:
     external: true
-  revprox_key:
+  revprox-key:
     external: true
-  revprox_cert:
+  revprox-cert:
     external: true

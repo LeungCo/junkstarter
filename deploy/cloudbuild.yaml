@@ -25,10 +25,31 @@ spec:
             - name: junkstarter-secrets
               mountPath: "/run/secrets"
               readOnly: true
+      containers:
+        - name: junkstarter-db
+          image: martinwheeler/junkstarter-db
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: junkstarter-secrets
+              mountPath: "/run/secrets"
+              readOnly: true
+      containers:
+        - name: junkstarter-payment
+          image: martinwheeler/junkstarter-payment
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: junkstarter-secrets
+              mountPath: "/run/secrets"
+              readOnly: true
       volumes:
       - name: junkstarter-secrets
         secret:
           secretName: postgres-password
+          secretName: payment-token
 
 ---
 apiVersion: v1

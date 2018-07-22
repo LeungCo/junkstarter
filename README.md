@@ -21,17 +21,17 @@ mkdir certs
 
 openssl req -newkey rsa:4096 -nodes -sha256 -keyout certs/domain.key -x509 -days 365 -out certs/domain.crt
 
-docker secret create revprox_cert certs/domain.crt
+docker secret create revprox-cert certs/domain.crt
 
-docker secret create revprox_key certs/domain.key
+docker secret create revprox-key certs/domain.key
 
-docker secret create postgres_password certs/domain.key
+docker secret create postgres-password certs/domain.key
 ```
 
 To create a secret for staging the payment gateway:
 
 ```
-echo staging | docker secret create staging_token - 
+echo staging | docker secret create staging-token - 
 ```
 
 ## Run as an application

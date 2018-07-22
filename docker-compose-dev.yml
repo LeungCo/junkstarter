@@ -13,7 +13,7 @@ services:
     networks:
       - back-tier
     secrets:
-      - postgres_password
+      - postgres-password
 
   appserver:
     build:
@@ -27,11 +27,11 @@ services:
       - front-tier
       - back-tier
     secrets:
-      - postgres_password
+      - postgres-password
 
 secrets:
-  postgres_password:
-    file: ./devsecrets/postgres_password
+  postgres-password:
+    file: ./devsecrets/postgres-password
     
 networks:
   front-tier:
