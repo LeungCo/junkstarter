@@ -52,8 +52,12 @@ spec:
       volumes:
       - name: junkstarter-secrets
         secret:
-          secretName: postgres-password
-          secretName: payment-token
+          secretName: production-secrets
+          items:
+          - key: payment-token
+            path: payment-token
+          - key: postgres-password
+            path: postgres-password
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
