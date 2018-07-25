@@ -49,19 +49,19 @@ public class JpaConfiguration {
 		DataSourceProperties dataSourceProperties = new DataSourceProperties();
 
 		// Set password to connect to postgres using Docker secrets.
-		try(BufferedReader br = new BufferedReader(new FileReader("/run/secrets/postgres-password"))) {
-			StringBuilder sb = new StringBuilder();
-			String line = br.readLine();
+		// try(BufferedReader br = new BufferedReader(new FileReader("/run/secrets/postgres-password"))) {
+		// 	StringBuilder sb = new StringBuilder();
+		// 	String line = br.readLine();
 
-			while (line != null) {
-				sb.append(line);
-				sb.append(System.lineSeparator());
-				line = br.readLine();
-			}
-			dataSourceProperties.setDataPassword(sb.toString());
-		} catch (IOException e) {
-			System.err.println("Could not successfully load DB password file");
-		}
+		// 	while (line != null) {
+		// 		sb.append(line);
+		// 		sb.append(System.lineSeparator());
+		// 		line = br.readLine();
+		// 	}
+			dataSourceProperties.setDataPassword("gordonpass");
+		// } catch (IOException e) {
+		// 	System.err.println("Could not successfully load DB password file");
+		// }
 		
 		return dataSourceProperties;
 	}
