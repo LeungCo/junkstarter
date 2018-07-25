@@ -26,20 +26,21 @@ spec:
           image: martinwheeler/junkstarter-api
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 80
+            - containerPort: 8080
+            - containerPort: 5005
           volumeMounts:
             - name: junkstarter-secrets
               mountPath: "/run/secrets"
               readOnly: true
-        # - name: junkstarter-db
-        #   image: martinwheeler/junkstarter-db
-        #   imagePullPolicy: IfNotPresent
-        #   ports:
-        #     - containerPort: 5432
-        #   volumeMounts:
-        #     - name: junkstarter-secrets
-        #       mountPath: "/run/secrets"
-        #       readOnly: true
+        - name: junkstarter-db
+          image: martinwheeler/junkstarter-db
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: junkstarter-secrets
+              mountPath: "/run/secrets"
+              readOnly: true
         # - name: junkstarter-payment
         #   image: martinwheeler/junkstarter-payment
         #   imagePullPolicy: IfNotPresent
@@ -87,19 +88,19 @@ spec:
     - port: 80
   selector:
     app: junkstarter-beta
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: junkstarter-beta-ingress
-  annotations:
-    ingress.kubernetes.io/rewrite-target: /api
-spec:
-  rules:
-  - host: beta.junkstarter.io
-    http:
-      paths:
-      - path: /api
-        backend:
-          serviceName: junkstarter-beta
-          servicePort: 80
+# ---
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: junkstarter-beta-ingress
+#   annotations:
+#     ingress.kubernetes.io/rewrite-target: /api
+# spec:
+#   rules:
+#   - host: beta.junkstarter.io
+#     http:
+#       paths:
+#       - path: /api
+#         backend:
+#           serviceName: junkstarter-beta
+#           servicePort: 80
