@@ -1,4 +1,4 @@
-from alpine
+FROM alpine
 
 RUN adduser -D payment
 USER payment

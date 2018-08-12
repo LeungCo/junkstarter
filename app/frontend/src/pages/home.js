@@ -5,7 +5,7 @@ class HomePage extends PureComponent {
   render () {
     return (
       <div>
-        Welcome to Junk Starter!
+        Welcome to Junk Starter 1.0!
       </div>
     );
   }

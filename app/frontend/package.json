@@ -2,7 +2,6 @@
   "name": "shopping-cart",
   "version": "0.0.1",
   "private": true,
-  "proxy": "http://localhost:8080",
   "devDependencies": {
     "autoprefixer": "6.7.2",
     "babel-core": "6.22.1",

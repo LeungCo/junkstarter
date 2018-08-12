@@ -1,23 +1,24 @@
 version: "3.1"
 
 services:
-  reverse_proxy:
-    build: ./reverse_proxy
-    user: nginx
+  # Not really sure we need this...
+  # Can probably create a better NGINX config to expose both the API and the APP
+  # reverse_proxy:
+  #   build: ./reverse_proxy
+  #   user: nginx
 
   database:
-    build: 
-       context: ./database
-    image: atsea_db
+    build:
+       context: database
+       dockerfile: Dockerfile
+    image: martinwheeler/junkstarter-db
     user: postgres
     environment:
       POSTGRES_USER: gordonuser
-      POSTGRES_PASSWORD_FILE: /run/secrets/postgres-password
+      POSTGRES_PASSWORD: gordonpass
       POSTGRES_DB: atsea
     ports:
-      - "5432:5432" 
-    networks:
-      - back-tier
+      - "5432:5432"
     secrets:
       - postgres-password
 
@@ -25,33 +26,28 @@ services:
     build:
        context: app
        dockerfile: Dockerfile
-    image: atsea_app
+    image: martinwheeler/junkstarter-api
     user: gordon
     ports:
       - "8080:8080" 
       - "5005:5005"
-    networks:
-      - front-tier
-      - back-tier
     secrets:
       - postgres-password
+    links:
+      - database
 
-  payment_gateway:
-    build:
-      context: payment_gateway
-    networks:
-      - payment
-    secrets:
-      - payment-token
+  # Not sure how this fits into the API backend?
+  # Guess we will have to find out when we start taking payments
+  # payment_gateway:
+  #   build:
+  #     context: payment_gateway
+  #   secrets:
+  #     - payment-token
+  #   links:
+  #     - appserver
 
-networks:
-  front-tier:
-  back-tier:
-  payment:
-    driver: overlay
-
-secrets:
-  postgres-password:
-    file: ./devsecrets/postgres-password
-  payment-token:
-    file: ./devsecrets/payment-token
+# secrets:
+#   postgres-password:
+#     file: ./devsecrets/postgres-password
+#   payment-token:
+#     file: ./devsecrets/payment-token
