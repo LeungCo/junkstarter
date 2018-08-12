@@ -46,7 +46,7 @@ spec:
           value: gordonpass
         - name: POSTGRES_USER
           value: gordonuser
-        image: martinwheeler/junkstarter-db:1bbdb09f6b2fa5d421c088ad39793403523e2801
+        image: martinwheeler/junkstarter-db:d8dcc8af8863143415805badcf78a9667bbb3594
         imagePullPolicy: IfNotPresent
         name: database
         ports:
@@ -99,7 +99,7 @@ spec:
         io.kompose.service: appserver
     spec:
       containers:
-      - image: martinwheeler/junkstarter-api:1bbdb09f6b2fa5d421c088ad39793403523e2801
+      - image: martinwheeler/junkstarter-api:d8dcc8af8863143415805badcf78a9667bbb3594
         imagePullPolicy: IfNotPresent
         name: appserver
         ports:
