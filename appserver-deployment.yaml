@@ -18,8 +18,7 @@ spec:
         io.kompose.service: appserver
     spec:
       containers:
-      - image: martinwheeler/junkstarter-api:7dae7c810d29407d53dd2495a4cb77d5f8d09aae
-        imagePullPolicy: IfNotPresent
+      - image: martinwheeler/junkstarter-api:1bbdb09f6b2fa5d421c088ad39793403523e2801
         name: appserver
         ports:
         - containerPort: 8080

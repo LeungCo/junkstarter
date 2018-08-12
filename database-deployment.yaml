@@ -25,8 +25,7 @@ spec:
           value: gordonpass
         - name: POSTGRES_USER
           value: gordonuser
-        image: martinwheeler/junkstarter-db:7dae7c810d29407d53dd2495a4cb77d5f8d09aae
-        imagePullPolicy: IfNotPresent
+        image: martinwheeler/junkstarter-db:1bbdb09f6b2fa5d421c088ad39793403523e2801
         name: database
         ports:
         - containerPort: 5432
