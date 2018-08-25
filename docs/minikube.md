@@ -1,20 +1,44 @@
 # Setting Up Minikube Locally
 
+## Requirements
+
+Make sure you have [brew](https://brew.sh) installed before continuing.
+
+# Super Quickstart
+
+The following script runs the commands in [Installation](#installation) & [Quickstart](#quickstart) for you so you can be up and running in no time!
+
+```sh
+bash <(curl -L https://git.io/fAqhG)
+```
 
 ## Installation
+
+Run the following in terminal:
+
 ```sh
 brew cask install virtualbox && \
 brew cask install minikube && \
 brew install kubernetes-cli
 ```
 
-## Running Minikube Cluster
+## Quickstart
+
+Run the following command inside of this projects root directory.
+
+```sh
+eval $(minikube docker-env) && \
+minikube start && \
+kubectl create -f cloudbuild.yaml
+```
+
+## Starting Minikube
 
 ```sh
 minikube start --vm-driver=virtualbox
 ```
 
-## Link Docker Daemon
+## Linking Docker Daemon to Local Cache
 
 Provides you shared access to the docker daemon running inside of minikube. Allows sharing the cache of docker images to prevent having to run them on the host machine and then also inside of minikube.
 
@@ -44,17 +68,14 @@ docker build -t martinwheeler/junkstarter-api:latest ./app
 docker build -t martinwheeler/junkstarter-db:latest ./database
 ```
 
-## Quickstart
+# Using Docker-Compose with Minikube
+
+See [this](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/#before-you-begin) article for setup instructions.
+
+Once the configs are created run the following command:
 
 ```sh
-eval $(minikube docker-env) && \
-docker build -t martinwheeler/junkstarter-api:latest ./app && \
-docker build -t martinwheeler/junkstarter-db:latest ./database && \
-
-minikube start && \
 kubectl create -f database-service.yaml,database-deployment.yaml,appserver-service.yaml,appserver-deployment.yaml
 ```
 
-# Using Docker-Compose with Minikube
-
-https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/#before-you-begin
+The configs that are generated may need some modification to get them communicating to the host correctly. Generally adding `NodePort` to the appserver config will get this working as expected.
