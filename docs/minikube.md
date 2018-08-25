@@ -9,7 +9,7 @@ Make sure you have [brew](https://brew.sh) installed before continuing.
 The following script runs the commands in [Installation](#installation) & [Quickstart](#quickstart) for you so you can be up and running in no time!
 
 ```sh
-bash <(curl -L https://git.io/fAqhG)
+bash <(curl -L https://git.io/fAqh4)
 ```
 
 ## Installation
