@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+#
+# NOTE: Since this script is PRIVATE in Github,
+#       it means to use it PUBLICLY you must put it
+#       in a gist, then use git.io to re-shorten.
+#
+
+title() {
+    cat << 'EOF'
+
+
+     ██╗██╗   ██╗███╗   ██╗██╗  ██╗███████╗████████╗ █████╗ ██████╗ ████████╗███████╗██████╗ 
+     ██║██║   ██║████╗  ██║██║ ██╔╝██╔════╝╚══██╔══╝██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██╔══██╗
+     ██║██║   ██║██╔██╗ ██║█████╔╝ ███████╗   ██║   ███████║██████╔╝   ██║   █████╗  ██████╔╝
+██   ██║██║   ██║██║╚██╗██║██╔═██╗ ╚════██║   ██║   ██╔══██║██╔══██╗   ██║   ██╔══╝  ██╔══██╗
+╚█████╔╝╚██████╔╝██║ ╚████║██║  ██╗███████║   ██║   ██║  ██║██║  ██║   ██║   ███████╗██║  ██║
+ ╚════╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝                                    
+
+
+EOF
+}
+title
+
+installRequirements() {
+  echo -e "==> Checking dependencies..."
+  
+  if ! brew cask ls --versions virtualbox > /dev/null; then
+    brew cask install virtualbox
+  fi
+
+  if ! brew cask ls --versions minikube > /dev/null; then
+    brew cask install minikube
+  fi
+
+  if ! brew ls --versions kubernetes-cli > /dev/null; then
+    brew install kubernetes-cli
+  fi
+}
+
+read -p "==> Which directory would you like to clone to? (./junkstarter): " -r development_dir
+development_dir=${development_dir:-./junkstarter}
+
+if [ -d "${development_dir}" ]; then
+  read -p "==> That directory already exists, are you sure you want to continue (y/N)? " -r prompt_existing_dir
+  prompt_existing_dir=${prompt_existing_dir:-N}
+  if [ "${prompt_existing_dir}" != "y" ]; then
+    echo -e "Exiting..."
+    exit 0
+  fi
+fi
+
+echo -e "==> Creating directory..." && \
+mkdir -p "${development_dir}" && \
+echo -e "==> Cloning required repositories" && \
+git clone git@github.com:LeungCo/junkstarter.git "${development_dir}" && \
+cd ${development_dir}
+
+if command -v brew >/dev/null; then
+  installRequirements
+else
+  echo -e "==> Installing brew..." && \
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" && \
+  installRequirements
+fi
+
+echo -e "==> Starting minikube..." && \
+minikube start --vm-driver=virtualbox && \
+eval $(minikube docker-env) && \
+echo -e "==> Creating kubernetes cluster..." && \
+kubectl create -f cloudbuild.yaml && \
+echo -e "==> Done."

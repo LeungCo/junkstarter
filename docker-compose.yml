@@ -9,8 +9,8 @@ services:
 
   database:
     build:
-       context: database
-       dockerfile: Dockerfile
+      context: database
+      dockerfile: Dockerfile
     image: martinwheeler/junkstarter-db:1bbdb09f6b2fa5d421c088ad39793403523e2801
     user: postgres
     environment:
@@ -26,12 +26,10 @@ services:
 
   appserver:
     build:
-       context: app
-       dockerfile: Dockerfile
+      context: app
+      dockerfile: Dockerfile
     image: martinwheeler/junkstarter-api:1bbdb09f6b2fa5d421c088ad39793403523e2801
     user: gordon
-    expose:
-      - 80
     ports:
       - ${JUNKSTARTER_WEB_PORT:-20000}:8080
       - 5005:5005
