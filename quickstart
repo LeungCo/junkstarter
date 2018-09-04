@@ -84,10 +84,10 @@ if [ -d "${development_dir}" ]; then
   fi
 fi
 
-# echo -e "==> Creating directory..." && \
-# mkdir -p "${development_dir}" && \
-# echo -e "==> Cloning required repositories" && \
-# git clone git@github.com:LeungCo/junkstarter.git "${development_dir}" && \
+echo -e "==> Creating directory..." && \
+mkdir -p "${development_dir}" && \
+echo -e "==> Cloning required repositories" && \
+git clone git@github.com:LeungCo/junkstarter.git "${development_dir}" && \
 cd ${development_dir}
 
 if command -v brew >/dev/null; then
@@ -98,10 +98,6 @@ else
   installRequirements
 fi
 
-# echo -e "==> Starting minikube..." && \
-# minikube start --vm-driver=virtualbox && \
-# eval $(minikube docker-env) && \
 echo -e "==> Starting docker containers..." && \
-# kubectl create -f cloudbuild.yaml && \
 start_docker
 
