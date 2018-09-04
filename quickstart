@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+#
+# NOTE: Since this script is PRIVATE in Github,
+#       it means to use it PUBLICLY you must put it
+#       in a gist, then use git.io to re-shorten.
+#
+
+title() {
+    cat << 'EOF'
+
+
+     ██╗██╗   ██╗███╗   ██╗██╗  ██╗███████╗████████╗ █████╗ ██████╗ ████████╗███████╗██████╗    
+     ██║██║   ██║████╗  ██║██║ ██╔╝██╔════╝╚══██╔══╝██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██╔══██╗   
+     ██║██║   ██║██╔██╗ ██║█████╔╝ ███████╗   ██║   ███████║██████╔╝   ██║   █████╗  ██████╔╝   
+██   ██║██║   ██║██║╚██╗██║██╔═██╗ ╚════██║   ██║   ██╔══██║██╔══██╗   ██║   ██╔══╝  ██╔══██╗   
+╚█████╔╝╚██████╔╝██║ ╚████║██║  ██╗███████║   ██║   ██║  ██║██║  ██║   ██║   ███████╗██║  ██║   
+ ╚════╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝   
+                                                                                                
+██████╗ ███████╗██╗   ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗███╗   ██╗████████╗
+██╔══██╗██╔════╝██║   ██║██╔════╝██║     ██╔═══██╗██╔══██╗████╗ ████║██╔════╝████╗  ██║╚══██╔══╝
+██║  ██║█████╗  ██║   ██║█████╗  ██║     ██║   ██║██████╔╝██╔████╔██║█████╗  ██╔██╗ ██║   ██║   
+██║  ██║██╔══╝  ╚██╗ ██╔╝██╔══╝  ██║     ██║   ██║██╔═══╝ ██║╚██╔╝██║██╔══╝  ██║╚██╗██║   ██║   
+██████╔╝███████╗ ╚████╔╝ ███████╗███████╗╚██████╔╝██║     ██║ ╚═╝ ██║███████╗██║ ╚████║   ██║   
+╚═════╝ ╚══════╝  ╚═══╝  ╚══════╝╚══════╝ ╚═════╝ ╚═╝     ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   
+
+
+EOF
+}
+title
+
+installRequirements() {
+  echo -e "==> Checking dependencies..."
+  
+  if ! command -v docker >/dev/null; then
+    echo -e "==> Installing docker & virtualbox..."
+    if ! brew cask ls --versions virtualbox > /dev/null; then
+      brew cask install --HEAD virtualbox
+    else
+      brew cask upgrade --HEAD virtualbox
+    fi
+
+    brew install --HEAD docker docker-compose docker-machine
+  fi
+}
+
+start_docker () {
+  # Kill any existing and restart all containers
+  docker-compose down
+  docker-compose rm -v
+
+  # Start in background then tail logs
+  # Want to see logs but not accidentally tear down env on ctrl-c
+  docker-compose up --build --force -d || return 1
+
+  # Background logs and save process id to kill later
+  docker-compose logs -f 2> /dev/null &
+  LOG_PS="${!}"
+
+  # Asynchronously prepare all repos
+  # Install dependencies, seed databases
+
+  # Kill log process and exit quickly to hide kill message
+  local LOG_SUB_PS
+  LOG_SUB_PS="$(pgrep -P "${LOG_PS}")"
+  if [ -n "${LOG_SUB_PS}" ]; then
+      kill -9 "${LOG_SUB_PS}"
+  fi
+  kill -9 "${LOG_PS}"
+  exit 0
+  
+  echo
+  echo -e "==> Done ✅. Run \e[1mdocker-compose up \e[0mto start the containers in future."
+}
+
+read -p "==> Which directory would you like to clone to? (./junkstarter): " -r development_dir
+development_dir=${development_dir:-./junkstarter}
+
+if [ -d "${development_dir}" ]; then
+  read -p "==> That directory already exists, are you sure you want to continue (y/N)? " -r prompt_existing_dir
+  prompt_existing_dir=${prompt_existing_dir:-N}
+  if [ "${prompt_existing_dir}" != "y" ]; then
+    echo -e "Exiting..."
+    exit 0
+  fi
+fi
+
+# echo -e "==> Creating directory..." && \
+# mkdir -p "${development_dir}" && \
+# echo -e "==> Cloning required repositories" && \
+# git clone git@github.com:LeungCo/junkstarter.git "${development_dir}" && \
+cd ${development_dir}
+
+if command -v brew >/dev/null; then
+  installRequirements
+else
+  echo -e "==> Installing brew..." && \
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" && \
+  installRequirements
+fi
+
+# echo -e "==> Starting minikube..." && \
+# minikube start --vm-driver=virtualbox && \
+# eval $(minikube docker-env) && \
+echo -e "==> Starting docker containers..." && \
+# kubectl create -f cloudbuild.yaml && \
+start_docker
+
