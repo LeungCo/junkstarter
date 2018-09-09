@@ -10,12 +10,11 @@ services:
   database:
     build:
       context: database
-      dockerfile: Dockerfile-dev
+      dockerfile: Dockerfile
     image: martinwheeler/junkstarter-db:1bbdb09f6b2fa5d421c088ad39793403523e2801
-    user: postgres
+    
     environment:
       POSTGRES_USER: gordonuser
-      POSTGRES_PASSWORD: gordonpass
       POSTGRES_DB: atsea
     expose:
       - 5432
@@ -29,7 +28,6 @@ services:
       context: app
       dockerfile: Dockerfile-dev
     image: martinwheeler/junkstarter-api:1bbdb09f6b2fa5d421c088ad39793403523e2801
-    user: gordon
     ports:
       - ${JUNKSTARTER_WEB_PORT:-20000}:8080
       - 5005:5005
