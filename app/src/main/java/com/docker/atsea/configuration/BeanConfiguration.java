@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.docker.atsea.service.CustomerService;
 import com.docker.atsea.service.CustomerServiceImpl;
+import com.docker.atsea.service.EventService;
+import com.docker.atsea.service.EventServiceImpl;
 import com.docker.atsea.service.OrderService;
 import com.docker.atsea.service.OrderServiceImpl;
 import com.docker.atsea.service.ProductService;
@@ -26,6 +28,11 @@ public class BeanConfiguration {
 	@Bean
 	public ProductService productService() {
 		return new ProductServiceImpl();
+	}
+	
+	@Bean
+	public EventService eventService() {
+		return new EventServiceImpl();
 	}
 
 	// Implement C3P0 connection pooling
