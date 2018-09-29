@@ -23,7 +23,7 @@ matrix:
         - docker
       before_install:
         - docker pull cypress/browsers:chrome69
-        - docker run cypress/browsers:chrome69
+        - docker run cypress/browsers:chrome69 /bin/sh -c "ls -la"
       before_script:
         ## runs the 'start' script which
         ## boots our local app server on port 8888
