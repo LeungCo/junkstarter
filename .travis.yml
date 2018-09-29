@@ -1,18 +1,24 @@
-language: java
-sudo: required
-services:
-  - docker
-
-env:
-  - DOCKER_COMPOSE_VERSION=1.4.2
-
-before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-  # - docker-compose up
-  - yarn --cwd ./app/frontend install
-
-script:
-  - yarn --cwd ./app/frontend test
+matrix:
+  include:
+    - language: java
+    sudo: required
+    services:
+      - docker
+    env:
+      - DOCKER_COMPOSE_VERSION=1.4.2
+    before_install:
+      - sudo rm /usr/local/bin/docker-compose
+      - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+      - chmod +x docker-compose
+      - sudo mv docker-compose /usr/local/bin
+      # - docker-compose up
+    
+    - language: node_js
+    node_js:
+      - "node"
+    env:
+      - CI=true
+    before_install:
+      - yarn --cwd ./app/frontend install
+    script:
+      - yarn --cwd ./app/frontend test
