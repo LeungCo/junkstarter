@@ -18,6 +18,8 @@ matrix:
     - language: node_js
       name: "FE Unit Tests"
       cache: yarn
+      node_js:
+        - "10.10.0"
       env:
         - CI=true
       before_install:
