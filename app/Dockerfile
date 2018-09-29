@@ -16,6 +16,6 @@ RUN adduser -Dh /home/gordon gordon
 WORKDIR /static
 COPY --from=frontend /usr/src/junkstarter/app/frontend/build/ .
 WORKDIR /app
-COPY --from=backend /usr/src/junkstarter/target/AtSea-0.0.1-SNAPSHOT.jar .
-ENTRYPOINT ["java", "-jar", "/app/AtSea-0.0.1-SNAPSHOT.jar"]
+COPY --from=backend /usr/src/junkstarter/target/JunkStarter-0.0.1-SNAPSHOT.jar .
+ENTRYPOINT ["java", "-jar", "/app/JunkStarter-0.0.1-SNAPSHOT.jar"]
 CMD ["--spring.profiles.active=postgres"]

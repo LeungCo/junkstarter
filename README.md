@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.org/LeungCo/junkstarter.svg?branch=master)](https://travis-ci.org/LeungCo/junkstarter)
 
-This project has been forked from [AtSea Sample Shop](https://github.com/dockersamples/atsea-sample-shop-app).
 
 # How to use Documentation
 

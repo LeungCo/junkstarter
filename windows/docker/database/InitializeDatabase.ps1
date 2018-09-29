@@ -16,10 +16,10 @@ if ($sa_password -ne "_") {
 }
 
 # attach data files if they exist: 
-$mdfPath = 'c:\database\AtSeaDB_Primary.mdf'
+$mdfPath = 'c:\database\JunkStarterDB_Primary.mdf'
 if ((Test-Path $mdfPath) -eq $true) {
     $sqlcmd = "CREATE DATABASE AssetsDB ON (FILENAME = N'$mdfPath')"
-    $ldfPath = 'c:\database\AtSeaDB_Primary.ldf'
+    $ldfPath = 'c:\database\JunkStarterDB_Primary.ldf'
     if ((Test-Path $mdfPath) -eq $true) {
         $sqlcmd =  "$sqlcmd, (FILENAME = N'$ldfPath')"
     }
@@ -31,12 +31,12 @@ if ((Test-Path $mdfPath) -eq $true) {
 # generate deployment script
 $SqlPackagePath = 'C:\Program Files (x86)\Microsoft SQL Server\130\DAC\bin\SqlPackage.exe'
 & $SqlPackagePath  `
-	/sf:Docker.AtSea.Database.dacpac `
+	/sf:Docker.JunkStarter.Database.dacpac `
 	/a:Script /op:deploy.sql /p:CommentOutSetVarDeclarations=true `
-	/tsn:.\SQLEXPRESS /tdn:AtSeaDB /tu:sa /tp:$sa_password
+	/tsn:.\SQLEXPRESS /tdn:JunkStarterDB /tu:sa /tp:$sa_password
  
 # deploy the create or upgrade script
-$SqlCmdVars = "DatabaseName=AtSeaDB", "DefaultFilePrefix=AtSeaDB", "DefaultDataPath=c:\database\", "DefaultLogPath=c:\database\"  
+$SqlCmdVars = "DatabaseName=JunkStarterDB", "DefaultFilePrefix=JunkStarterDB", "DefaultDataPath=c:\database\", "DefaultLogPath=c:\database\"  
 Invoke-Sqlcmd -InputFile deploy.sql -Variable $SqlCmdVars -Verbose
 
 # TODO - use ServiceMonitor.exe when it gets open-sourced (https://github.com/Microsoft/iis-docker/issues/1)

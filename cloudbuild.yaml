@@ -41,7 +41,7 @@ spec:
       containers:
       - env:
         - name: POSTGRES_DB
-          value: atsea
+          value: junkstarter
         - name: POSTGRES_PASSWORD
           value: gordonpass
         - name: POSTGRES_USER
