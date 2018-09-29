@@ -1,15 +1,14 @@
 matrix:
   include:
     - language: java
-      name: "BE Unit Tests"
+      name: BE Unit Tests
       before_install:
         - cd app
-
     - language: node_js
-      name: "FE Unit Tests"
+      name: FE Unit Tests
       cache: yarn
       node_js:
-        - "10.10.0"
+        - 10.10.0
       env:
         - CI=true
       before_install:
@@ -18,3 +17,6 @@ matrix:
         - cd app/frontend
       script:
         - yarn test
+notifications:
+  slack:
+    secure: q8fVrmSMbVn1NZK2tl7vhULuNSZ0ZAQ/a6DJalzGbudFcmtXYLQEfc1sSirHJsXxOV8mYRy0wKoGUHtvbUzMUeQf4eSj7TsRVRNJ1CdlyGSGIE4xCTPPunuoDaz27cgBCuDm9/L9vTTe9ldFEBgjVS3G+lWvhj2ltkElGDp0OxYTnxv4WXV/4BQ6w+7/g/Mjet3fU/H2ZoUnhMrGuQr1Pw6Wxs4QzuL7En4cF7fwosL2LiYCuVj7vStz3Zef3Xy7w0FTV/uJCHD4jlBEwrY33W/rSzEJ+vOA0s+OmzRdo+QYW8c0pxPhtxfJR8U2UoiMQAgIZoAezjiySiEt6SdbOCw5wzUmQniENSec8GwzDhqdf4Z7vXwFyOK40ZpvByp4uLezb3BueK9bUBgofSIj4axWFJ2x8xWCSSzOnEylGDx97Aczjw2yyx1UF9swfLhHCt2sm0TZWqJtUo+VXf+sBqNFXZyvilJEVwyDrUsJfFqZc7XeWn4TcJkjVgpvJ0qpfJlnS+iLTGc+jPVd8A+X2HfqNgTKr1gilytpBoHTg/03A3KSeA2WMTgAVp7CMn2p9csAZ9c+5PO8UpHjQRybxPpzGrdiCiZUedzUma/c8KZ/9bpVDfSfQyn2P5Kc2P3rfbHOELQfphRjDVpQPoTIYND2NQ5I+BWbA2Pu+tb/ebM=
