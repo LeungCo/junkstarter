@@ -21,12 +21,9 @@ matrix:
       name: FE E2E Tests
       services:
         - docker
-      env:
-        global: DOCKER_COMPOSE_VERSION=1.22.0
       before_install:
-        - docker-compose --version
-        - docker-compose pull
         - docker-compose -f ./frontend-test-cypress.yml up -d --build
+        - cd app/frontend
       before_script:
         ## runs the 'start' script which
         ## boots our local app server on port 8888
@@ -39,7 +36,7 @@ matrix:
         # - docker-compose -f ./frontend-test-cypress.yml up -d --build
         - yarn start --silent &
       script:
-        - docker-compose run cypress ./app/frontend/node_modules/.bin/cypress run
+        - docker-compose run cypress ./node_modules/.bin/cypress run
       after_script:
         - docker-compose down
 
