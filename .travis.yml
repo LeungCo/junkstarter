@@ -21,9 +21,13 @@ matrix:
       name: FE E2E Tests
       services:
         - docker
+      env:
+        global: DOCKER_COMPOSE_VERSION=1.22.0
       before_install:
-        - docker pull cypress/browsers:chrome69
-        - docker run cypress/browsers:chrome69 /bin/sh -c "ls -la"
+        - sudo rm /usr/local/bin/docker-compose
+        - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+        - chmod +x docker-compose
+        - sudo mv docker-compose /usr/local/bin
       before_script:
         ## runs the 'start' script which
         ## boots our local app server on port 8888
@@ -32,15 +36,14 @@ matrix:
         ## we use the '&' ampersand which tells
         ## travis to run this process in the background
         ## else it would block execution and hang travis
-        - yarn start --silent &
+        - sleep 3
+        - docker-compose -f frontend-test-cypress.yml up -d --build
+        # - yarn start --silent &
       script:
-        ## now run cypress headlessly
-        ## and record all of the tests.
-        ## Cypress will search for a
-        ## CYPRESS_RECORD_KEY environment
-        ## variable by default and apply
-        ## this to the run.
-        - yarn cypress:run
+        - docker-compose run cypress ./node_modules/.bin/cypress run --config baseUrl=http://127.0.0.1
+
+      after_script:
+        - docker-compose down
 
 notifications:
   slack:

@@ -1,0 +1,23 @@
+version: "3.1"
+
+services:
+  cypress:
+    build:
+      context: app/frontend
+      dockerfile: Dockerfile
+    network_mode: "host"
+  # Not sure how this fits into the API backend?
+  # Guess we will have to find out when we start taking payments
+  # payment_gateway:
+  #   build:
+  #     context: payment_gateway
+  #   secrets:
+  #     - payment-token
+  #   links:
+  #     - appserver
+
+# secrets:
+#   postgres-password:
+#     file: ./devsecrets/postgres-password
+#   payment-token:
+#     file: ./devsecrets/payment-token
