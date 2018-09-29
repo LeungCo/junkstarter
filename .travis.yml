@@ -36,9 +36,9 @@ matrix:
         ## we use the '&' ampersand which tells
         ## travis to run this process in the background
         ## else it would block execution and hang travis
+        - yarn start --silent &
         - sleep 3
         - docker-compose -f frontend-test-cypress.yml up -d --build
-        # - yarn start --silent &
       script:
         - docker-compose run cypress ./node_modules/.bin/cypress run --config baseUrl=http://127.0.0.1
 
