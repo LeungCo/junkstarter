@@ -1,9 +1,11 @@
+language: java
 matrix:
   include:
-    - language: java
+    - name: "BE Unit Tests"
     sudo: required
     services:
       - docker
+
     env:
       - DOCKER_COMPOSE_VERSION=1.4.2
     before_install:
@@ -13,7 +15,8 @@ matrix:
       - sudo mv docker-compose /usr/local/bin
       # - docker-compose up
     
-    - language: node_js
+    - name: "FE Unit Tests"
+    language: node_js
     cache: yarn
     node_js:
       - "node"
