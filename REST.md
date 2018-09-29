@@ -13,7 +13,7 @@ The REST endpoints are divided into three types:
 ## Get All Products
 ****Request:****
 ```
-GET /atsea/api/product/
+GET /junkstarter/api/product/
 
 Host: localhost:8080
 Auth: 
@@ -50,7 +50,7 @@ HTTP 204 NO CONTENT
 ## Get Single Product
 **Request:**
 ```
-GET /atsea/api/product/{id}
+GET /junkstarter/api/product/{id}
 
 Host: localhost:8080
 Auth:
@@ -77,7 +77,7 @@ HTTP 404 NOT FOUND
 ## Create Customer
 **Request:**
 ```
-POST /atsea/api/customer/
+POST /junkstarter/api/customer/
 
 Host: localhost:8080
 Auth: 
@@ -114,7 +114,7 @@ HTTP 409 CONFLICT
 ## Get Customer
 **Request:**
 ```
-GET /atsea/api/customer/{id}
+GET /junkstarter/api/customer/{id}
 
 Host: localhost:8080
 Auth: 
@@ -143,7 +143,7 @@ HTTP 404 NOT FOUND
 ## Get Customer by Name
 **Request:**
 ```
-GET /atsea/api/customer/name={name}
+GET /junkstarter/api/customer/name={name}
 
 Host: localhost:8080
 Auth: 
@@ -171,7 +171,7 @@ HTTP 404 NOT FOUND
 ### Get Customer by Username
 **Request:**
 ```
-GET /atsea/api/customer/username={username}
+GET /junkstarter/api/customer/username={username}
 
 Host: localhost:8080
 Auth: 
@@ -199,7 +199,7 @@ HTTP 404 NOT FOUND
 ## Update Customer
 **Request:**
 ```
-PUT /atsea/api/customer/{customerId}
+PUT /junkstarter/api/customer/{customerId}
 
 Host: localhost:8080
 Auth: 
@@ -245,7 +245,7 @@ HTTP 404 NOT FOUND
 ## Delete a Customer
 **Request:**
 ```
-DELETE /atsea/api/customer/{customerId}
+DELETE /junkstarter/api/customer/{customerId}
 
 Host: localhost:8080
 Auth: 
@@ -265,7 +265,7 @@ HTTP 204 NO CONTENT
 ## Delete all Customers
 **Request:**
 ```
-DELETE /atsea/api/customer/
+DELETE /junkstarter/api/customer/
 
 Host: localhost:8080
 Auth: 
@@ -281,7 +281,7 @@ HTTP 204 NO CONTENT
 ## Create an Order
 **Request:**
 ```
-POST /atsea/api/order/
+POST /junkstarter/api/order/
 
 Host: localhost:8080
 Auth:
@@ -312,7 +312,7 @@ HTTP 409 CONFLICT
 ## Get All Orders
 **Request:**
 ```
-GET /atsea/api/order/
+GET /junkstarter/api/order/
 
 Host: localhost:8080
 Auth: 
@@ -345,7 +345,7 @@ HTTP 404 NO CONTENT
 #### Get Order by Id
 **Request:**
 ```
-GET /atsea/api/order/{orderId}
+GET /junkstarter/api/order/{orderId}
 
 Host: localhost:8080
 Auth: 
@@ -373,7 +373,7 @@ HTTP 404 NOT FOUND
 ## Update an Order
 **Request:**
 ```
-POST: /atsea/api/order/{orderId}
+POST: /junkstarter/api/order/{orderId}
 
 Host: localhost:8080
 Auth: 
@@ -409,7 +409,7 @@ HTTP 404 NOT FOUND
 ## Delete an Order
 **Request:**
 ```
-DELETE: /atsea/api/order/{orderId}
+DELETE: /junkstarter/api/order/{orderId}
 
 Host: localhost:8080
 Auth:
@@ -433,7 +433,7 @@ HTTP 404 NOT FOUND
 ## Login
 **Request:**
 ```
-POST: /atsea/login/
+POST: /junkstarter/login/
 
 Host: localhost:8080
 Auth: 
@@ -462,7 +462,7 @@ HTTP 403 UNAUTHORIZED
 #### Purchase
 **Request:**
 ```
-GET: /atsea/purchase/
+GET: /junkstarter/purchase/
 
 Host: localhost:8080
 Auth: 

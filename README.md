@@ -1,6 +1,6 @@
 # Junk Starter
 
-This project has been forked from [AtSea Sample Shop](https://github.com/dockersamples/atsea-sample-shop-app).
+This project has been forked from [JunkStarter Sample Shop](https://github.com/dockersamples/junkstarter-sample-shop-app).
 
 # How to use Documentation
 

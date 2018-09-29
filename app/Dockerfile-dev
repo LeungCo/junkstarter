@@ -16,7 +16,7 @@ FROM java:8-jdk-alpine
 WORKDIR /static
 COPY --from=0 /usr/src/junkstarter/app/frontend/build/ .
 WORKDIR /app
-COPY --from=1 /usr/src/junkstarter/target/AtSea-0.0.1-SNAPSHOT.jar .
+COPY --from=1 /usr/src/junkstarter/target/JunkStarter-0.0.1-SNAPSHOT.jar .
 EXPOSE 5005
-ENTRYPOINT ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005","-jar", "/app/AtSea-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005","-jar", "/app/JunkStarter-0.0.1-SNAPSHOT.jar"]
 CMD ["--spring.profiles.active=postgres"]
