@@ -12,6 +12,7 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   # - docker-compose up
+  - yarn install
 
 script:
   - yarn --cwd ./app/frontend test
