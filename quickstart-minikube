@@ -4,6 +4,7 @@
 #       it means to use it PUBLICLY you must put it
 #       in a gist, then use git.io to re-shorten.
 #
+xcode-select --install
 
 title() {
     cat << 'EOF'
