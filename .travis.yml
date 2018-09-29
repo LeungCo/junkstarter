@@ -1,28 +1,28 @@
-language: java
 matrix:
   include:
-    - name: "BE Unit Tests"
-    sudo: required
-    services:
-      - docker
+    - language: java
+      name: "BE Unit Tests"
+      sudo: required
+      services:
+        - docker
 
-    env:
-      - DOCKER_COMPOSE_VERSION=1.4.2
-    before_install:
-      - sudo rm /usr/local/bin/docker-compose
-      - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-      - chmod +x docker-compose
-      - sudo mv docker-compose /usr/local/bin
-      # - docker-compose up
-    
-    - name: "FE Unit Tests"
-    language: node_js
-    cache: yarn
-    node_js:
-      - "node"
-    env:
-      - CI=true
-    before_install:
-      - yarn --cwd ./app/frontend install
-    script:
-      - yarn --cwd ./app/frontend test
+      env:
+        - DOCKER_COMPOSE_VERSION=1.4.2
+      before_install:
+        - sudo rm /usr/local/bin/docker-compose
+        - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+        - chmod +x docker-compose
+        - sudo mv docker-compose /usr/local/bin
+        # - docker-compose up
+
+    - language: node_js
+      name: "FE Unit Tests"
+      cache: yarn
+      node_js:
+        - "node"
+      env:
+        - CI=true
+      before_install:
+        - yarn --cwd ./app/frontend install
+      script:
+        - yarn --cwd ./app/frontend test
