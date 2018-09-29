@@ -42,7 +42,13 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "jest",
-    "test:init": "jest --init"
+    "test:init": "jest --init",
+    "cypress:init": "cypress init",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:run:record": "cypress run --record",
+    "cypress:run:chrome": "cypress run --browser chrome",
+    "cypress:run:headed": "cypress run --headed"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -71,6 +77,7 @@
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "core-decorators": "^0.20.0",
+    "cypress": "^3.1.0",
     "emotion": "^9.2.8",
     "react-app-rewired": "^1.5.2",
     "regenerator-runtime": "^0.12.1"
