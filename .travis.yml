@@ -28,6 +28,9 @@ matrix:
         - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
         - chmod +x docker-compose
         - sudo mv docker-compose /usr/local/bin
+        - docker-compose --version
+        - docker-compose pull
+        - docker-compose -f ./frontend-test-cypress.yml up -d --build
       before_script:
         ## runs the 'start' script which
         ## boots our local app server on port 8888
@@ -36,12 +39,11 @@ matrix:
         ## we use the '&' ampersand which tells
         ## travis to run this process in the background
         ## else it would block execution and hang travis
+        # - sleep 3
+        # - docker-compose -f ./frontend-test-cypress.yml up -d --build
         - yarn start --silent &
-        - sleep 3
-        - docker-compose -f frontend-test-cypress.yml up -d --build
       script:
-        - docker-compose run cypress ./node_modules/.bin/cypress run --config baseUrl=http://127.0.0.1
-
+        - docker-compose run cypress ./app/frontend/node_modules/.bin/cypress run --config baseUrl=http://127.0.0.1:3000
       after_script:
         - docker-compose down
 
