@@ -21,7 +21,7 @@ matrix:
       name: FE E2E Tests
       node_js:
         - 10
-      cache: yarn
+      cache:
         directories:
           - ~/.npm
           - ~/.cache
