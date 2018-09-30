@@ -2,7 +2,7 @@
 
 context("Navigation", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000");
+    cy.visit("http://localhost/index.html");
   });
 
   it("Can get a valid product from the product list", () => {

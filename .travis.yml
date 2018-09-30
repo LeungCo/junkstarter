@@ -22,21 +22,10 @@ matrix:
       services:
         - docker
       before_install:
-        - docker-compose -f ./frontend-test-cypress.yml up -d --build
+        - docker-compose up --build -d
         - cd app/frontend
-      before_script:
-        ## runs the 'start' script which
-        ## boots our local app server on port 8888
-        ## which cypress expects to be running
-        ## -----------------------------------
-        ## we use the '&' ampersand which tells
-        ## travis to run this process in the background
-        ## else it would block execution and hang travis
-        # - sleep 3
-        # - docker-compose -f ./frontend-test-cypress.yml up -d --build
-        - yarn start --silent &
       script:
-        - docker-compose run cypress ./node_modules/.bin/cypress run
+        - yarn cypess:run
       after_script:
         - docker-compose down
 
