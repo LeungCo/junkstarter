@@ -1,12 +1,6 @@
 version: "3.1"
 
 services:
-  # Not really sure we need this...
-  # Can probably create a better NGINX config to expose both the API and the APP
-  # reverse_proxy:
-  #   build: ./reverse_proxy
-  #   user: nginx
-
   database:
     build:
       context: database
@@ -17,12 +11,6 @@ services:
       POSTGRES_USER: gordonuser
       POSTGRES_PASSWORD: gordonpass
       POSTGRES_DB: junkstarter
-    expose:
-      - 5432
-    ports:
-      - ${JUNKSTARTER_DB_PORT:-20001}:5432
-    # secrets:
-    #   - postgres-password
 
   appserver:
     build:
@@ -33,11 +21,8 @@ services:
     ports:
       - ${JUNKSTARTER_WEB_PORT:-20000}:8080
       - 5005:5005
-    # secrets:
-    #   - postgres-password
     links:
       - database
-
   # Not sure how this fits into the API backend?
   # Guess we will have to find out when we start taking payments
   # payment_gateway:
@@ -47,9 +32,3 @@ services:
   #     - payment-token
   #   links:
   #     - appserver
-
-# secrets:
-#   postgres-password:
-#     file: ./devsecrets/postgres-password
-#   payment-token:
-#     file: ./devsecrets/payment-token
