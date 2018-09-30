@@ -42,7 +42,7 @@ matrix:
         - docker-compose up --build -d
         - cd app/frontend
       script:
-        - yarn cypess:run
+        - yarn cypress:run
       after_script:
         - docker-compose down
 
