@@ -1,6 +1,7 @@
 package com.docker.junkstarter.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.docker.junkstarter.model.Event;
 
@@ -10,5 +11,5 @@ public interface EventService {
 		
 	List<Event> findAllEvents();
 
-	Event findById(Long eventId);
+	Event findById(UUID eventId);
 }

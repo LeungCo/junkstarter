@@ -1,6 +1,7 @@
 package com.docker.junkstarter.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class EventServiceImpl implements EventService {
 		return eventRepository.findByName(name);
 	}
 
-	public Event findById(Long eventId) {
+	public Event findById(UUID eventId) {
 		return eventRepository.findOne(eventId);
 	}
 }
