@@ -1,6 +1,7 @@
 package com.docker.junkstarter.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +45,7 @@ public class EventController {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "/event/{eventId}", method = RequestMethod.GET)
-	public ResponseEntity<?> getEvent(@PathVariable("eventId") long eventId) {
+	public ResponseEntity<?> getEvent(@PathVariable("eventId") UUID eventId) {
 		logger.info("Fetching Event with id {}", eventId);
 		Event event = eventService.findById(eventId);
 		if (event == null) {

@@ -6,7 +6,6 @@ services:
   # reverse_proxy:
   #   build: ./reverse_proxy
   #   user: nginx
-
   database:
     build:
       context: database
@@ -20,6 +19,8 @@ services:
       - 5432
     ports:
       - ${JUNKSTARTER_DB_PORT:-20001}:5432
+    networks:
+      - local
     # secrets:
     #   - postgres-password
 
@@ -35,7 +36,25 @@ services:
     #   - postgres-password
     links:
       - database
+    networks:
+      - local
 
+  portainer:
+      image: portainer/portainer
+      container_name: "portainer-app"
+      ports:
+        - "9000:9000"
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - portainer_data:/data
+      networks:
+      - local
+
+volumes:
+  portainer_data:
+
+networks:
+  local:
   # Not sure how this fits into the API backend?
   # Guess we will have to find out when we start taking payments
   # payment_gateway:
