@@ -35,11 +35,10 @@ public class Event implements Serializable {
     private String description;
           
 	public Event() {
-		
+
 	}
 	
-	public Event(UUID eventId, String name, String description) {
-		this.eventId = eventId;
+	public Event(String name, String description) {
 		this.name = name;
 		this.description = description;	
 	}
