@@ -18,6 +18,18 @@
   </properties>
 
   <dependencies>
+    <!-- Required for Hiraki datasource configuration -->
+	<dependency>
+	    <groupId>io.dropwizard.metrics</groupId>
+	    <artifactId>metrics-core</artifactId>
+	    <version>3.1.2</version>
+	</dependency>
+	<dependency>
+	    <groupId>io.dropwizard.metrics</groupId>
+	    <artifactId>metrics-healthchecks</artifactId>
+	    <version>3.1.2</version>
+	</dependency>
+
     <!-- Add typical dependencies for a web application -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -121,7 +133,15 @@
     	<artifactId>rest-assured</artifactId>
     	<version>3.0.2</version>
 	</dependency>
+	 <!-- H2 In-Memory Database JDBC driver for tests -->
+	<dependency>
+		<groupId>com.h2database</groupId>
+		<artifactId>h2</artifactId>
+		<version>1.4.195</version>
+		<scope>test</scope>
+	</dependency>
   </dependencies>
+ 
   
   <build>
     <plugins>
