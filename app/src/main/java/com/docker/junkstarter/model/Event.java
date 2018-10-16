@@ -1,15 +1,8 @@
 package com.docker.junkstarter.model;
 
-import java.io.Serializable;
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -17,15 +10,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
-@Table(name="event", uniqueConstraints = { @UniqueConstraint(columnNames = "eventid")})
+@Table(name="event")
 @JsonInclude(Include.NON_NULL)
-public class Event implements Serializable {
+public class Event extends BaseModel{
 	 
 	private static final long serialVersionUID = 2133036846121663021L;
-
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID eventId;
     
     @NotEmpty
     @Column(name = "name", length = 255, nullable = false)
@@ -42,14 +31,6 @@ public class Event implements Serializable {
 		this.name = name;
 		this.description = description;	
 	}
-
-    public UUID getEventId() {
-    	return eventId;
-    }
-    
-    public void setEventId(UUID eventId) {
-        this.eventId = eventId;
-    }
  
     public String getName() {
         return name;
@@ -69,7 +50,7 @@ public class Event implements Serializable {
     
 	@Override
 	public String toString() {
-		return "Event [eventId=" + eventId +
+		return "Event [uuid=" + getId()+
 				         ", name=" + name +
 				         ", description=" + description +
 				         "]";

@@ -18,7 +18,7 @@ ALTER TABLE product
 
 CREATE TABLE event
 (
-  eventId uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+  id DEFAULT uuid_generate_v4() PRIMARY KEY,
   description character varying(10485760) NOT NULL,
   name character varying(255) NOT NULL
 );
@@ -40,9 +40,9 @@ INSERT INTO product (name, description, image, price) VALUES ('Experimental', 'T
 INSERT INTO product (name, description, image, price) VALUES ('Docker for Developers', 'Escape the App Dependency Matrix', '/images/8.png', 25);
 INSERT INTO product (name, description, image, price) VALUES ('DockerCon Copenhagen', 'DockerCon returns to Europe', '/images/9.png', 25);
 
-INSERT INTO event (eventId, name, description) VALUES ('667fd724-2ac5-466b-ab85-948f42b0d372','Hot women day out', 'blah blah blah');
-INSERT INTO event (eventId, name, description) VALUES ('2c7089fa-e1cb-4b0e-af36-a145d75a9046','Hot', 'blah blah blah');
-INSERT INTO event (eventId, name, description) VALUES ('6654b8df-7ad8-4732-8f8a-11d9870404e9','day out', 'blah blah blah');
-INSERT INTO event (eventId, name, description) VALUES ('fa4bdfd1-6eec-428b-8117-e4a09a71c6c2','out', 'blah blah blah');
+INSERT INTO event (id, name, description) VALUES ('667fd724-2ac5-466b-ab85-948f42b0d372','Hot women day out', 'blah blah blah');
+INSERT INTO event (id, name, description) VALUES ('2c7089fa-e1cb-4b0e-af36-a145d75a9046','Hot', 'blah blah blah');
+INSERT INTO event (id, name, description) VALUES ('6654b8df-7ad8-4732-8f8a-11d9870404e9','day out', 'blah blah blah');
+INSERT INTO event (id, name, description) VALUES ('fa4bdfd1-6eec-428b-8117-e4a09a71c6c2','out', 'blah blah blah');
 
 

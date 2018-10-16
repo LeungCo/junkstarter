@@ -38,9 +38,9 @@ public class EventRepositoryIntegrationTest {
 
 	@Test
 	public void findOneSucceeds() {
-		Event found = repository.findOne(event.getEventId());
+		Event found = repository.findOne(event.getId());
 		assertThat(found.getName()).isEqualTo("name");
-		assertThat(repository.exists(event.getEventId())).isEqualTo(true);
+		assertThat(repository.exists(event.getId())).isEqualTo(true);
 	}
 
 	@Test
@@ -53,23 +53,23 @@ public class EventRepositoryIntegrationTest {
 		assertThat(results.size()).isEqualTo(2);
 
 		Event result = results.get(0);
-		assertThat(result.getEventId()).isEqualTo(event.getEventId());
+		assertThat(result.getId()).isEqualTo(event.getId());
 
 		Event result2 = results.get(1);
-		assertThat(result2.getEventId()).isEqualTo(event2.getEventId());
+		assertThat(result2.getId()).isEqualTo(event2.getId());
 	}
 
 	@Test
 	public void createSucceeds() {
 		Event event = new Event("name", "desc");
 		event = repository.saveAndFlush(event);
-		assertThat(repository.exists(event.getEventId())).isEqualTo(true);
+		assertThat(repository.exists(event.getId())).isEqualTo(true);
 	}
 
 	@Test
 	public void deleteSucceeds() {
 		repository.delete(event);
-		assertThat(repository.exists(event.getEventId())).isEqualTo(false);
+		assertThat(repository.exists(event.getId())).isEqualTo(false);
 	}
 
 	@After

@@ -36,7 +36,7 @@ public class EventServiceIntegrationTest {
 
 	@Test
 	public void findByIdSucceeds() {
-		Event found = service.findById(event.getEventId());
+		Event found = service.findById(event.getId());
 		assertThat(found.getName()).isEqualTo("name");
 	}
 	
@@ -53,8 +53,8 @@ public class EventServiceIntegrationTest {
 
 		List<Event> results = service.findAllEvents();
 		
-		assertThat(results.get(0).getEventId()).isEqualTo(event.getEventId());
-		assertThat(results.get(1).getEventId()).isEqualTo(event2.getEventId());
+		assertThat(results.get(0).getId()).isEqualTo(event.getId());
+		assertThat(results.get(1).getId()).isEqualTo(event2.getId());
 	}
 	
 	@After

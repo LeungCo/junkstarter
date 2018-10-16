@@ -57,21 +57,21 @@ public class EventControllerUnitTest {
 	@Test
 	public void readSucceeds() throws Exception {
 		Event event = new Event();
-		event.setEventId(UUID_1);
+		event.setId(UUID_1);
 		when(eventService.findById(UUID_1)).thenReturn(event);
 	
 		mockMvc.perform(get("/api/event/" + UUID_1_STRING).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.eventId", is(UUID_1_STRING)))
+				.andExpect(jsonPath("$.id", is(UUID_1_STRING)))
 				.andDo(print());
 	}
 
 	@Test
 	public void searchSucceeds() throws Exception {
 		Event event1 = new Event("name", "desc");
-		event1.setEventId(UUID_1);
+		event1.setId(UUID_1);
 		Event event2 = new Event("name", "desc");
-		event2.setEventId(UUID_2);
+		event2.setId(UUID_2);
 		List<Event>events = new ArrayList<>();
 		events.add(event1);
 		events.add(event2);
@@ -81,8 +81,8 @@ public class EventControllerUnitTest {
 		mockMvc.perform(get("/api/event/").contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$", hasSize(2)))
-				.andExpect(jsonPath("$[0].eventId", is(UUID_1_STRING)))
-				.andExpect(jsonPath("$[1].eventId", is(UUID_2_STRING)))
+				.andExpect(jsonPath("$[0]id", is(UUID_1_STRING)))
+				.andExpect(jsonPath("$[1].id", is(UUID_2_STRING)))
 				.andDo(print());
 	}
 
