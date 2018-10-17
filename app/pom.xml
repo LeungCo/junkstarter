@@ -72,6 +72,7 @@
 		<artifactId>hibernate-c3p0</artifactId>
 		<version>5.2.10.Final</version>
 	</dependency>
+	
     <!-- Add MySQL database support -->
 	<dependency>
 		<groupId>mysql</groupId>
@@ -140,9 +141,23 @@
 		<version>1.4.195</version>
 		<scope>test</scope>
 	</dependency>
+	<!-- JOOQ -->
+	<dependency>
+	    <groupId>org.jooq</groupId>
+	    <artifactId>jooq</artifactId>
+	    <version>3.11.5</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.jooq</groupId>
+	    <artifactId>jooq-meta</artifactId>
+	    <version>3.11.5</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.jooq</groupId>
+	    <artifactId>jooq-codegen</artifactId>
+	    <version>3.11.5</version>
+	</dependency>
   </dependencies>
- 
-  
   <build>
     <plugins>
       <plugin><!-- Create a jar with all dependencies, run commandline using java -jar NAME -->

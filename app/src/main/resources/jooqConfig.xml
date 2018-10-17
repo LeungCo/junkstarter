@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.10.0.xsd">
+  <!-- Configure the database connection here -->
+  <jdbc>
+    <driver>org.postgresql.Driver</driver>
+    <url>jdbc:postgresql://0.0.0.0:5432/junkstarter</url>
+    <user>gordonuser</user>
+    <password>gordonpass</password>
+    
+<!--     You can also pass user/password and other JDBC properties in the optional properties tag: -->
+<!--     <properties> -->
+<!--       <property><key>user</key><value>[db-user]</value></property> -->
+<!--       <property><key>password</key><value>[db-password]</value></property> -->
+<!--     </properties> -->
+  </jdbc>
+
+   <generator>
+  	<name>org.jooq.codegen.JavaGenerator</name>
+  	<generate>
+        <javaTimeTypes>true</javaTimeTypes>
+    </generate>
+    
+    <database>
+      <name>org.jooq.meta.postgres.PostgresDatabase</name>
+      <inputSchema>public</inputSchema>
+      <includes>.*</includes>
+      <excludes></excludes>
+    </database>
+
+    <generate>
+      <!-- Generation flags: See advanced configuration properties -->
+    </generate>
+
+    <target>
+      <!-- The destination package of your generated classes (within the
+           destination directory)
+           
+           jOOQ may append the schema name to this package if generating multiple schemas,
+           e.g. org.jooq.your.packagename.schema1
+                org.jooq.your.packagename.schema2 -->
+      <packageName>com.docker.junkstarter.jooq</packageName>
+
+      <!-- The destination directory of your generated classes -->
+      <directory>../app/src/main/java</directory>
+    </target>
+  </generator>
+</configuration>

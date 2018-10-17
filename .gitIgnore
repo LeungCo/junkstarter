@@ -5,3 +5,4 @@ bin/
 tmp/
 docs/_book/
 */maven-status/*
+jooq/
