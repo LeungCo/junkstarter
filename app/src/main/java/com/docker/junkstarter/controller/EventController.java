@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.docker.junkstarter.model.Event;
+import com.docker.junkstarter.entity.Event;
 import com.docker.junkstarter.service.EventService;
 import com.docker.junkstarter.util.CustomErrorType;
 

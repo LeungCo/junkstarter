@@ -24,7 +24,12 @@
       <name>org.jooq.meta.postgres.PostgresDatabase</name>
       <inputSchema>public</inputSchema>
       <includes>.*</includes>
-      <excludes></excludes>
+      <excludes>
+<!--          UNUSED_TABLE                # This table (unqualified name) should not be generated -->
+<!--          | PREFIX_.*                   # Objects with a given prefix should not be generated -->
+<!--          | SECRET_SCHEMA\.SECRET_TABLE # This table (qualified name) should not be generated -->
+<!--          | SECRET_ROUTINE              # This routine (unqualified name) ... -->
+      </excludes>
     </database>
 
     <generate>
@@ -41,7 +46,7 @@
       <packageName>com.docker.junkstarter.jooq</packageName>
 
       <!-- The destination directory of your generated classes -->
-      <directory>../app/src/main/java</directory>
+      <directory>../app/gensrc/main/java</directory>
     </target>
   </generator>
 </configuration>

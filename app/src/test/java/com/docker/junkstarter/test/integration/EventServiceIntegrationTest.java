@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.docker.junkstarter.model.Event;
+import com.docker.junkstarter.entity.Event;
 import com.docker.junkstarter.repositories.EventRepository;
 import com.docker.junkstarter.service.EventService;
 

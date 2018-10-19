@@ -157,6 +157,11 @@
 	    <artifactId>jooq-codegen</artifactId>
 	    <version>3.11.5</version>
 	</dependency>
+	<dependency>
+	    <groupId>com.jolbox</groupId>
+	    <artifactId>bonecp</artifactId>
+	    <version>0.8.0.RELEASE</version>
+	</dependency>
   </dependencies>
   <build>
     <plugins>

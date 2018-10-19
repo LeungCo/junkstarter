@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.docker.junkstarter.model.Event;
+import com.docker.junkstarter.entity.Event;
 import com.docker.junkstarter.repositories.EventRepository;
 
 @Service("eventService")
@@ -22,10 +22,10 @@ public class EventServiceImpl implements EventService {
 	}
 
 	public Event findByName(String name) {
-		return eventRepository.findByName(name);
+		return new Event("asdf","asdf");
 	}
 
 	public Event findById(UUID eventId) {
-		return eventRepository.findOne(eventId);
+		return new Event("asdf","asdf");
 	}
 }

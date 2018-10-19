@@ -5,18 +5,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.docker.junkstarter.configuration.JpaConfiguration;
-import com.docker.junkstarter.controller.LoginController;
+import com.docker.junkstarter.configuration.PersistenceContext;
 import com.docker.junkstarter.security.JwtFilter;
 
 
-@Import(JpaConfiguration.class)
+@Import(PersistenceContext.class)
 @SpringBootApplication(scanBasePackages={"com.docker.junkstarter"})
-@EntityScan("com.docker.junkstarter.model")
+@EntityScan("com.docker.junkstarter.entity")
 @EnableJpaRepositories("com.docker.junkstarter.repositories")
 public class JunkStarterApp {
 

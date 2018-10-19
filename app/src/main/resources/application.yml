@@ -11,7 +11,7 @@ datasource:
     username: sa
     password:
     driverClassName: org.h2.Driver
-    defaultSchema:
+    defaultSchema: public
     maxPoolSize: 10
     hibernate:
       hbm2ddl.method: create-drop
