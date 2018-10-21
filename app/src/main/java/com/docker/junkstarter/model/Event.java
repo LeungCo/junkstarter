@@ -11,10 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -37,12 +39,29 @@ public class Event implements Serializable {
 	@Column(name = "description", length = 10485760, nullable = false)
 	private String description;
 
-	@Column(name = "created_at")
+	@Column(name = "created_at", nullable = false, updatable=false)
 	public Date createdAt;
+
+	@Column(name = "modified_at", nullable = false)
+	public Date modifiedAt;
 
 	@PrePersist
 	void createdAt() {
-		this.createdAt = new Date();
+		DateTime dt = new DateTime();
+		Date date = dt.toDate();
+		this.createdAt = date;
+		this.modifiedAt = date;
+	}
+
+	@PreUpdate
+	void updatedAt() {
+		DateTime dt = new DateTime();
+		Date date = dt.toDate();
+		this.modifiedAt = date;
+	}
+
+	public Date getModifiedAt() {
+		return modifiedAt;
 	}
 
 	public Event() {
@@ -86,7 +105,9 @@ public class Event implements Serializable {
 	public String toString() {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 
-		return "Event [eventId=" + eventId + ", name=" + name + ", description=" + description + " created_at=" + format.format(createdAt) + "]";
+		return "Event [eventId=" + eventId + ", name=" + name + ", description=" + description + " created_at="
+				+ format.format(createdAt) + " modified_at="
+						+ format.format(modifiedAt) + "]";
 	}
 
 }

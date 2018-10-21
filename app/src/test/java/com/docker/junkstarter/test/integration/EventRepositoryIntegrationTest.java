@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
+import org.joda.time.DateTimeUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,6 +27,7 @@ public class EventRepositoryIntegrationTest {
 
 	@Before
 	public void setup() {
+		DateTimeUtils.setCurrentMillisFixed(10L);
 		event = new Event("name", "desc");
 		repository.saveAndFlush(event);
 	}
