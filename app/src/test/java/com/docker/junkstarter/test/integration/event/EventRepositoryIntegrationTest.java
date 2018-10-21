@@ -27,7 +27,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
-@DatabaseSetup("events.xml")
+@DatabaseSetup("./events.xml")
 public class EventRepositoryIntegrationTest {
 
 	private static final UUID EVENT_ID1 = UUID.fromString("667fd724-2ac5-466b-ab85-948f42b0d372");
