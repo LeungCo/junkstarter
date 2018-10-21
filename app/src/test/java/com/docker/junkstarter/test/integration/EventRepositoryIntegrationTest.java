@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,9 +13,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.docker.junkstarter.entity.Event;
 import com.docker.junkstarter.repositories.EventRepository;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
+@DatabaseSetup("events.xml")
 public class EventRepositoryIntegrationTest {
 
 	@Autowired

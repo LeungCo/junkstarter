@@ -31,7 +31,6 @@ public class EventServiceIntegrationTest {
 	@Before
 	public void setup() {
 		event = new Event("name", "desc");
-		repository.saveAndFlush(event);
 	}
 
 	@Test
@@ -49,18 +48,11 @@ public class EventServiceIntegrationTest {
 	@Test
 	public void findAllEventsSucceeds() {
 		Event event2 = new Event("name", "desc");
-		event2 = repository.saveAndFlush(event2);
+//		event2 = repository.saveAndFlush(event2);
 
 		List<Event> results = service.findAllEvents();
 		
 		assertThat(results.get(0).getEventId()).isEqualTo(event.getEventId());
 		assertThat(results.get(1).getEventId()).isEqualTo(event2.getEventId());
-	}
-	
-	@After
-	public void tearDown() {
-		repository.deleteAll();
-		repository.flush();
-		assertThat(repository.count()).isEqualTo(0);
 	}
 }

@@ -14,8 +14,6 @@ import com.docker.junkstarter.security.JwtFilter;
 
 @Import(PersistenceContext.class)
 @SpringBootApplication(scanBasePackages={"com.docker.junkstarter"})
-@EntityScan("com.docker.junkstarter.entity")
-@EnableJpaRepositories("com.docker.junkstarter.repositories")
 public class JunkStarterApp {
 
 	@Bean

@@ -24,7 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.docker.junkstarter.controller.EventController;
-import com.docker.junkstarter.model.Event;
+import com.docker.junkstarter.entity.Event;
 import com.docker.junkstarter.service.EventService;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -56,7 +56,7 @@ public class EventControllerUnitTest {
 
 	@Test
 	public void readSucceeds() throws Exception {
-		Event event = new Event();
+		Event event = new Event("name","desc");
 		event.setEventId(UUID_1);
 		when(eventService.findById(UUID_1)).thenReturn(event);
 	
