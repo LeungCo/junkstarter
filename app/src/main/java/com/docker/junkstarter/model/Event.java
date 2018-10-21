@@ -1,36 +1,22 @@
 package com.docker.junkstarter.model;
 
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.UUID;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.joda.time.DateTime;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
 @Table(name = "event", uniqueConstraints = { @UniqueConstraint(columnNames = "eventid") })
-@JsonInclude(Include.NON_NULL)
-public class Event implements Serializable {
+@AttributeOverride(name="id", column=@Column(name="eventId"))
+public class Event extends AuditableEntity {
 
 	private static final long serialVersionUID = 2133036846121663021L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID eventId;
 
 	@NotEmpty
 	@Column(name = "name", length = 255, nullable = false)
@@ -39,37 +25,8 @@ public class Event implements Serializable {
 	@Column(name = "description", length = 10485760, nullable = false)
 	private String description;
 
-	@Column(name = "created_at", nullable = false, updatable=false)
-	public Date createdAt;
-
-	@Column(name = "modified_at", nullable = false)
-	public Date modifiedAt;
-
-	@PrePersist
-	void createdAt() {
-		DateTime dt = new DateTime();
-		Date date = dt.toDate();
-		this.createdAt = date;
-		this.modifiedAt = date;
-	}
-
-	@PreUpdate
-	void updatedAt() {
-		DateTime dt = new DateTime();
-		Date date = dt.toDate();
-		this.modifiedAt = date;
-	}
-
-	public Date getModifiedAt() {
-		return modifiedAt;
-	}
-
 	public Event() {
 
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
 	}
 
 	public Event(String name, String description) {
@@ -78,11 +35,11 @@ public class Event implements Serializable {
 	}
 
 	public UUID getEventId() {
-		return eventId;
+		return getId();
 	}
 
 	public void setEventId(UUID eventId) {
-		this.eventId = eventId;
+		this.setId(eventId);
 	}
 
 	public String getName() {
@@ -105,9 +62,8 @@ public class Event implements Serializable {
 	public String toString() {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 
-		return "Event [eventId=" + eventId + ", name=" + name + ", description=" + description + " created_at="
-				+ format.format(createdAt) + " modified_at="
-						+ format.format(modifiedAt) + "]";
+		return "Event [eventId=" + getEventId() + ", name=" + name + ", description=" + description + " created_at="
+				+ format.format(createdAt) + " modified_at=" + format.format(modifiedAt) + "]";
 	}
 
 }
