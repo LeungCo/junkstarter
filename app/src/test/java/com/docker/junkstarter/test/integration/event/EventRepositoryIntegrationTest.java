@@ -1,10 +1,8 @@
 package com.docker.junkstarter.test.integration.event;
 
+import static com.docker.junkstarter.util.DateUtility.getDateMillis;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,15 +35,11 @@ public class EventRepositoryIntegrationTest {
 	@Autowired
 	private EventRepository repository;
 
-	private Date today;
+	private static long TODAY_MILLIS = getDateMillis("2018-05-20");
 
 	@Before
 	public void setup() throws Exception {
-		String myDate = "2018/05/20";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		today = sdf.parse(myDate);
-		long millis = today.getTime();
-		DateTimeUtils.setCurrentMillisFixed(millis);
+		DateTimeUtils.setCurrentMillisFixed(TODAY_MILLIS);
 	}
 
 	@Test
@@ -87,17 +81,12 @@ public class EventRepositoryIntegrationTest {
 		Event found = repository.findOne(event.getEventId());
 		assertThat(found.getName()).isEqualTo("name");
 		assertThat(found.getDescription()).isEqualTo("desc");
-		assertThat(found.getCreatedAt().getTime()).isEqualTo(today.getTime());
-		assertThat(found.getModifiedAt().getTime()).isEqualTo(today.getTime());
+		assertThat(found.getCreatedAt().getTime()).isEqualTo(TODAY_MILLIS);
+		assertThat(found.getModifiedAt().getTime()).isEqualTo(TODAY_MILLIS);
 	}
 
 	@Test
 	public void updateSucceeds() throws Exception {
-		String createdDate = "2018/01/01";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		Date date = sdf.parse(createdDate);
-		long millis = date.getTime();
-
 		Event event = new Event("Changed", "Changed desc");
 		event.setEventId(EVENT_ID1);
 		event = repository.save(event);
@@ -105,8 +94,8 @@ public class EventRepositoryIntegrationTest {
 		Event found = repository.findOne(event.getEventId());
 		assertThat(found.getName()).isEqualTo("Changed");
 		assertThat(found.getDescription()).isEqualTo("Changed desc");
-		assertThat(found.getCreatedAt().getTime()).isEqualTo(millis);
-		assertThat(found.getModifiedAt().getTime()).isEqualTo(today.getTime());
+		assertThat(found.getCreatedAt().getTime()).isEqualTo(getDateMillis("2018-01-01"));
+		assertThat(found.getModifiedAt().getTime()).isEqualTo(TODAY_MILLIS);
 	}
 
 	@Test
