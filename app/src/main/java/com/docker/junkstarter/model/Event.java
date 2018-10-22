@@ -1,6 +1,7 @@
 package com.docker.junkstarter.model;
 
-import java.text.SimpleDateFormat;
+import static com.docker.junkstarter.util.DateUtility.getDateString;
+
 import java.util.UUID;
 
 import javax.persistence.AttributeOverride;
@@ -13,7 +14,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "event", uniqueConstraints = { @UniqueConstraint(columnNames = "eventid") })
-@AttributeOverride(name="id", column=@Column(name="eventId"))
+@AttributeOverride(name = "id", column = @Column(name = "eventId"))
 public class Event extends AuditableEntity {
 
 	private static final long serialVersionUID = 2133036846121663021L;
@@ -60,10 +61,8 @@ public class Event extends AuditableEntity {
 
 	@Override
 	public String toString() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-
 		return "Event [eventId=" + getEventId() + ", name=" + name + ", description=" + description + " created_at="
-				+ format.format(createdAt) + " modified_at=" + format.format(modifiedAt) + "]";
+				+ getDateString(createdAt) + " modified_at=" + getDateString(modifiedAt) + "]";
 	}
 
 }
