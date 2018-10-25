@@ -9,22 +9,23 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "user", uniqueConstraints = { @UniqueConstraint(columnNames = "userId"),
+@Table(name = "juser", uniqueConstraints = { @UniqueConstraint(columnNames = "userId"),
 		@UniqueConstraint(columnNames = "email") })
 @AttributeOverride(name = "id", column = @Column(name = "userId"))
 public class User extends AuditableEntity {
 
 	private static final long serialVersionUID = 2133036846121663021L;
 
-	@NotEmpty
+	@NotNull
 	@Column(name = "email", length = 255, nullable = false)
 	private String email;
 
-	@NotEmpty
+	@NotNull
 	@Column(name = "password", length = 40, nullable = false)
 	private String password;
 

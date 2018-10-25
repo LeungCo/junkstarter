@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<juser userId="uuid'667fd724-2ac5-466b-ab85-948f42b0d372'" email="user1@gmail.com" password="pw1" created_at="2018-01-01" modified_at="2018-01-02"/>
+	<juser userId="uuid'6654b8df-7ad8-4732-8f8a-11d9870404e9'" email="user2@gmail.com" password="pw2" created_at="2018-01-01" modified_at="2018-01-03"/>
+	<juser userId="uuid'fa4bdfd1-6eec-428b-8117-e4a09a71c6c2'" email="user3@gmail.com" password="pw3" created_at="2018-01-01" modified_at="2018-01-03"/>
+</dataset>

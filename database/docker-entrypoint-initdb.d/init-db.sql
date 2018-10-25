@@ -28,6 +28,30 @@ CREATE TABLE event
 ALTER TABLE event
   OWNER TO gordonuser;
 
+CREATE TABLE user
+(
+  userId uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+  email character varying(255) NOT NULL,
+  password character varying(40) NOT NULL,
+  created_at date DEFAULT CURRENT_DATE NOT NULL,
+  modified_at date DEFAULT CURRENT_DATE NOT NULL
+);
+
+ALTER TABLE user
+  OWNER TO gordonuser;
+
+CREATE TABLE user_remote
+(
+  id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+  userId uuid NOT NULL,
+  remoteId uuid NOT NULL,
+  created_at date DEFAULT CURRENT_DATE NOT NULL,
+  modified_at date DEFAULT CURRENT_DATE NOT NULL
+);
+
+ALTER TABLE user_remote
+  OWNER TO gordonuser;
+
 ALTER ROLE gordonuser CONNECTION LIMIT -1;
 
 -- add product data
