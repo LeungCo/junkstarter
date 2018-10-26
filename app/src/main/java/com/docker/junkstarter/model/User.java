@@ -11,9 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 @Entity
+//We've used the name "juser" because hibernate and postgres can't have the table "user"
 @Table(name = "juser", uniqueConstraints = { @UniqueConstraint(columnNames = "userId"),
 		@UniqueConstraint(columnNames = "email") })
 @AttributeOverride(name = "id", column = @Column(name = "userId"))

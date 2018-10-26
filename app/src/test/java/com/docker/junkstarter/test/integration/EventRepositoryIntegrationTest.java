@@ -1,4 +1,4 @@
-package com.docker.junkstarter.test.integration.event;
+package com.docker.junkstarter.test.integration;
 
 import static com.docker.junkstarter.util.DateUtility.getDateMillis;
 import static org.assertj.core.api.Assertions.assertThat;
