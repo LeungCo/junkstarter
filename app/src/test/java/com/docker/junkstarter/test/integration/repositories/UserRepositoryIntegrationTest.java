@@ -1,4 +1,4 @@
-package com.docker.junkstarter.test.integration;
+package com.docker.junkstarter.test.integration.repositories;
 
 import static com.docker.junkstarter.util.DateUtility.getDateMillis;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -6,27 +6,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.UUID;
 
-import org.joda.time.DateTimeUtils;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Sort;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import com.docker.junkstarter.model.User;
 import com.docker.junkstarter.repositories.UserRepository;
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.docker.junkstarter.test.core.RepositoryTest;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
 @DatabaseSetup("/users.xml")
-public class UserRepositoryIntegrationTest {
+public class UserRepositoryIntegrationTest extends RepositoryTest {
 
 	private static final UUID USER_ID1 = UUID.fromString("667fd724-2ac5-466b-ab85-948f42b0d372");
 	private static final UUID USER_ID2 = UUID.fromString("6654b8df-7ad8-4732-8f8a-11d9870404e9");
@@ -36,13 +26,6 @@ public class UserRepositoryIntegrationTest {
 
 	@Autowired
 	private UserRepository repository;
-
-	private static long TODAY_MILLIS = getDateMillis("2018-05-20");
-
-	@Before
-	public void setup() throws Exception {
-		DateTimeUtils.setCurrentMillisFixed(TODAY_MILLIS);
-	}
 
 	@Test
 	public void findByEmailSucceeds() {

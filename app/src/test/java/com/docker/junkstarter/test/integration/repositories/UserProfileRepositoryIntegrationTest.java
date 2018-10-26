@@ -1,4 +1,4 @@
-package com.docker.junkstarter.test.integration;
+package com.docker.junkstarter.test.integration.repositories;
 
 import static com.docker.junkstarter.util.DateUtility.getDateMillis;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,14 +20,12 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import com.docker.junkstarter.enums.Gender;
 import com.docker.junkstarter.model.UserProfile;
 import com.docker.junkstarter.repositories.UserProfileRepository;
+import com.docker.junkstarter.test.core.RepositoryTest;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
 @DatabaseSetup("/userProfiles.xml")
-public class UserProfileRepositoryIntegrationTest {
+public class UserProfileRepositoryIntegrationTest extends RepositoryTest  {
 
 	private static final UUID USER_PROFILE_ID1 = UUID.fromString("667fd724-2ac5-466b-ab85-948f42b0d372");
 	private static final UUID USER_PROFILE_ID2 = UUID.fromString("6654b8df-7ad8-4732-8f8a-11d9870404e9");
@@ -37,13 +35,6 @@ public class UserProfileRepositoryIntegrationTest {
 
 	@Autowired
 	private UserProfileRepository repository;
-
-	private static long TODAY_MILLIS = getDateMillis("2018-05-20");
-
-	@Before
-	public void setup() throws Exception {
-		DateTimeUtils.setCurrentMillisFixed(TODAY_MILLIS);
-	}
 
 	@Test
 	public void findByEmailSucceeds() {

@@ -1,4 +1,4 @@
-package com.docker.junkstarter.test.integration;
+package com.docker.junkstarter.test.integration.repositories;
 
 import static com.docker.junkstarter.util.DateUtility.getDateMillis;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -6,27 +6,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.UUID;
 
-import org.joda.time.DateTimeUtils;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Sort;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import com.docker.junkstarter.model.UserGroup;
 import com.docker.junkstarter.repositories.UserGroupRepository;
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.docker.junkstarter.test.core.RepositoryTest;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
 @DatabaseSetup("/groups.xml")
-public class UserGroupRepositoryIntegrationTest {
+public class UserGroupRepositoryIntegrationTest extends RepositoryTest {
 
 	private static final UUID GROUP_ID1 = UUID.fromString("667fd724-2ac5-466b-ab85-948f42b0d372");
 	private static final UUID GROUP_ID2 = UUID.fromString("46c394cf-55f1-4254-93c7-d054b12f522e");
@@ -39,13 +29,6 @@ public class UserGroupRepositoryIntegrationTest {
 
 	@Autowired
 	private UserGroupRepository repository;
-
-	private static long TODAY_MILLIS = getDateMillis("2018-05-20");
-
-	@Before
-	public void setup() throws Exception {
-		DateTimeUtils.setCurrentMillisFixed(TODAY_MILLIS);
-	}
 
 	@Test
 	public void findByOwnerIdSucceeds() {
