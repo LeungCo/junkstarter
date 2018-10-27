@@ -1,40 +1,41 @@
 package com.docker.junkstarter.util;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 public class DateUtility {
-	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-	public static final SimpleDateFormat DATE_FORMAT_DB_STRING = new SimpleDateFormat("YYYYMMDD");
+	public static final DateTimeFormatter DATE_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd");
+	public static final DateTimeFormatter DATE_FORMAT_DB_STRING = DateTimeFormat.forPattern("yyyymmdd");
 
 	public static String getDatabaseString() {
-		return DATE_FORMAT_DB_STRING.format(new Date());
+		DateTime dt = new DateTime();
+		return DATE_FORMAT_DB_STRING.print(dt);
 	}
 
-	public static String getDatabaseString(Date date) {
-		return DATE_FORMAT_DB_STRING.format(date);
+	public static String getDatabaseString(DateTime date) {
+		return DATE_FORMAT_DB_STRING.print(date);
 	}
 
 	public static String getDateString() {
-		return DATE_FORMAT.format(new Date());
+		return DATE_FORMAT.print(new DateTime());
 	}
 
 	public static String getDateString(Date date) {
-		return DATE_FORMAT.format(date);
+		return DATE_FORMAT.print(new DateTime(date));
+	}
+
+	public static String getDateString(DateTime date) {
+		return DATE_FORMAT.print(date);
+	}
+
+	public static long getDateMillis() {
+		return new Date().getTime();
 	}
 
 	public static long getDateMillis(String date) {
-		Date today;
-		try {
-			today = DATE_FORMAT.parse(date);
-			long millis = today.getTime();
-			return millis;
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return 0L;
+		return DATE_FORMAT.parseDateTime(date).getMillis();
 	}
 }

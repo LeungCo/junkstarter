@@ -15,10 +15,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.docker.junkstarter.model.Event;
 import com.docker.junkstarter.repositories.EventRepository;
 import com.docker.junkstarter.service.EventService;
+import com.docker.junkstarter.test.core.IntegrationTest;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
-public class EventServiceIntegrationTest {
+public class EventServiceIntegrationTest extends IntegrationTest {
 
 	@Autowired
 	private EventService service;
