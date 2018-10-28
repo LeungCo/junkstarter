@@ -1,4 +1,4 @@
-package com.docker.junkstarter.test.integration;
+package com.docker.junkstarter.test.integration.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,14 +15,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.docker.junkstarter.model.Event;
 import com.docker.junkstarter.repositories.EventRepository;
 import com.docker.junkstarter.service.EventService;
+import com.docker.junkstarter.test.core.IntegrationTest;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
-public class EventServiceIntegrationTest {
+public class EventServiceIntegrationTest extends IntegrationTest {
 
 	@Autowired
 	private EventService service;
-	
+
 	@Autowired
 	private EventRepository repository;
 
@@ -39,24 +38,24 @@ public class EventServiceIntegrationTest {
 		Event found = service.findById(event.getEventId());
 		assertThat(found.getName()).isEqualTo("name");
 	}
-	
+
 	@Test
 	public void findByNameSucceeds() {
 		Event found = service.findByName(event.getName());
 		assertThat(found.getName()).isEqualTo("name");
 	}
-	
+
 	@Test
 	public void findAllEventsSucceeds() {
 		Event event2 = new Event("name", "desc");
 		event2 = repository.saveAndFlush(event2);
 
 		List<Event> results = service.findAllEvents();
-		
+
 		assertThat(results.get(0).getEventId()).isEqualTo(event.getEventId());
 		assertThat(results.get(1).getEventId()).isEqualTo(event2.getEventId());
 	}
-	
+
 	@After
 	public void tearDown() {
 		repository.deleteAll();

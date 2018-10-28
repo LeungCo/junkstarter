@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<user_pool queueNumber="10" groupId="uuid'8ed9e0ca-90a8-4818-bf68-c84bc0b44f10'" fishingDate="2018-09-10" created_at="2018-01-01"/>
+	<user_pool queueNumber="20" groupId="uuid'cb60fe3a-40cf-4351-be8e-e063d5879367'" fishingDate="2018-09-10" created_at="2018-01-01"/>
+	<user_pool queueNumber="30" groupId="uuid'fffebf83-e6fa-4d0c-947d-c48c94774308'" fishingDate="2018-09-10" created_at="2018-01-01"/>
+</dataset>
