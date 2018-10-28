@@ -17,7 +17,7 @@ import com.docker.junkstarter.model.UserGroup;
 public interface UserGroupRepository extends JpaRepository<UserGroup, UUID> {
 
 	@Query("SELECT e FROM UserGroup e WHERE e.ownerId = :ownerId")
-	List<UserGroup> findByOwnerId(@Param("ownerId") UUID ownerId);
+	List<UserGroup> findAllByOwnerId(@Param("ownerId") UUID ownerId);
 
 	@Modifying
 	@Query("DELETE FROM UserGroup e WHERE e.ownerId =:#{#ownerId}")

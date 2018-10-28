@@ -32,7 +32,7 @@ public class UserPoolTagRepositoryIntegrationTest extends RepositoryTest  {
 
 	@Test
 	public void findByGroupIdSucceeds() {
-		List<UserPoolTag> results = repository.findByQueueNumber(QUEUE_NO1);
+		List<UserPoolTag> results = repository.findAllByQueueNumber(QUEUE_NO1);
 		assertThat(results.size()).isEqualTo(3);
 	}
 

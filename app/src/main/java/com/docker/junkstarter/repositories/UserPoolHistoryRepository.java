@@ -10,16 +10,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.docker.junkstarter.model.UserPoolTag;
+import com.docker.junkstarter.model.UserPoolHistory;
 
 @Repository
 @Transactional
-public interface UserPoolTagRepository extends JpaRepository<UserPoolTag, UUID> {
+public interface UserPoolHistoryRepository extends JpaRepository<UserPoolHistory, UUID> {
 
-	@Query("SELECT e FROM UserPoolTag e WHERE e.queueNumber = :queueNumber")
-	List<UserPoolTag> findAllByQueueNumber(@Param("queueNumber") Long queueNumber);
+	@Query("SELECT e FROM UserPoolHistory e WHERE e.userPoolId = :userPoolId")
+	List<UserPoolHistory> findAllByUserPoolId(@Param("userPoolId") UUID userPoolId);
 
 	@Modifying
-	@Query("DELETE FROM UserPoolTag e WHERE e.queueNumber =:#{#queueNumber}")
-	int deleteAllByQueueNumber(@Param("queueNumber") Long queueNumber);
+	@Query("DELETE FROM UserPoolHistory e WHERE e.userPoolId =:#{#userPoolId}")
+	int deleteAllByUserPoolId(@Param("userPoolId") UUID userPoolId);
 }

@@ -32,7 +32,7 @@ public class UserGroupMemberRepositoryIntegrationTest extends RepositoryTest {
 
 	@Test
 	public void findByGroupIdSucceeds() {
-		List<UserGroupMember> results = repository.findByGroupId(GROUP_ID1);
+		List<UserGroupMember> results = repository.findAllByGroupId(GROUP_ID1);
 		assertThat(results.size()).isEqualTo(3);
 	}
 

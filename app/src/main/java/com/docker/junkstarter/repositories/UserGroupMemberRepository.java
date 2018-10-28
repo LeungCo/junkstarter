@@ -17,10 +17,10 @@ import com.docker.junkstarter.model.UserGroupMember;
 public interface UserGroupMemberRepository extends JpaRepository<UserGroupMember, UUID> {
 
 	@Query("SELECT e FROM UserGroupMember e WHERE e.groupId = :groupId")
-	List<UserGroupMember> findByGroupId(@Param("groupId") UUID groupId);
+	List<UserGroupMember> findAllByGroupId(@Param("groupId") UUID groupId);
 
 	@Query("SELECT e FROM UserGroupMember e WHERE e.userId = :userId")
-	List<UserGroupMember> findByUserId(@Param("userId") UUID userId);
+	List<UserGroupMember> findAllByUserId(@Param("userId") UUID userId);
 
 	@Modifying
 	@Query("DELETE FROM UserGroupMember e WHERE e.groupId =:#{#groupId}")

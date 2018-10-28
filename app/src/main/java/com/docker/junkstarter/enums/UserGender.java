@@ -1,6 +1,6 @@
 package com.docker.junkstarter.enums;
 
-public enum Gender {
+public enum UserGender {
 	MALE,
 	FEMALE,
 	PREFER_NOT_SAY

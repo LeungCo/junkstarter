@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-import com.docker.junkstarter.enums.Gender;
+import com.docker.junkstarter.enums.UserGender;
 
 @Entity
 @Table(name = "user_profile", uniqueConstraints = { @UniqueConstraint(columnNames = "userProfileId"),
@@ -32,7 +32,7 @@ public class UserProfile extends AuditableEntity {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(name = "gender")
-	private Gender gender = Gender.PREFER_NOT_SAY;
+	private UserGender gender = UserGender.PREFER_NOT_SAY;
 
 	@Column(name = "profilePictureId")
 	private UUID profilePictureId;
@@ -68,11 +68,11 @@ public class UserProfile extends AuditableEntity {
 		this.displayName = displayName;
 	}
 
-	public Gender getGender() {
+	public UserGender getGender() {
 		return gender;
 	}
 
-	public void setGender(Gender gender) {
+	public void setGender(UserGender gender) {
 		this.gender = gender;
 	}
 

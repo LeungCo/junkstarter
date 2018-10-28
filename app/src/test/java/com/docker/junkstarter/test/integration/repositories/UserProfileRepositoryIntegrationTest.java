@@ -17,7 +17,7 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import com.docker.junkstarter.enums.Gender;
+import com.docker.junkstarter.enums.UserGender;
 import com.docker.junkstarter.model.UserProfile;
 import com.docker.junkstarter.repositories.UserProfileRepository;
 import com.docker.junkstarter.test.core.RepositoryTest;
@@ -74,7 +74,7 @@ public class UserProfileRepositoryIntegrationTest extends RepositoryTest  {
 		assertThat(found.getUserId()).isEqualTo(USER_PROFILE_ID1);
 		assertThat(found.getBlurb()).isNull();
 		assertThat(found.getDateOfBirth()).isNull();
-		assertThat(found.getGender()).isEqualTo(Gender.PREFER_NOT_SAY);
+		assertThat(found.getGender()).isEqualTo(UserGender.PREFER_NOT_SAY);
 		assertThat(found.getProfilePictureId()).isNull();
 		assertThat(found.getCreatedAt().getTime()).isEqualTo(TODAY_MILLIS);
 		assertThat(found.getModifiedAt().getTime()).isEqualTo(TODAY_MILLIS);
@@ -86,7 +86,7 @@ public class UserProfileRepositoryIntegrationTest extends RepositoryTest  {
 		userProfile.setUserProfileId(USER_PROFILE_ID1);
 		userProfile.setDateOfBirth("20180607");
 		userProfile.setBlurb("change");
-		userProfile.setGender(Gender.FEMALE);
+		userProfile.setGender(UserGender.FEMALE);
 		userProfile.setDisplayName("change");
 		userProfile = repository.save(userProfile);
 
@@ -94,7 +94,7 @@ public class UserProfileRepositoryIntegrationTest extends RepositoryTest  {
 		assertThat(found.getUserId()).isEqualTo(USER_PROFILE_ID1);
 		assertThat(found.getDateOfBirth()).isEqualTo("20180607");
 		assertThat(found.getBlurb()).isEqualTo("change");
-		assertThat(found.getGender()).isEqualTo(Gender.FEMALE);
+		assertThat(found.getGender()).isEqualTo(UserGender.FEMALE);
 		assertThat(found.getDisplayName()).isEqualTo("change");
 		assertThat(found.getCreatedAt().getTime()).isEqualTo(getDateMillis("2018-01-01"));
 		assertThat(found.getModifiedAt().getTime()).isEqualTo(TODAY_MILLIS);
