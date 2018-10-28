@@ -26,25 +26,6 @@ matrix:
         - cd app/frontend
       script:
         - yarn test
-    - language: node_js
-      name: FE E2E Tests
-      cache:
-        yarn: true
-      node_js:
-        - 10
-      services:
-        - docker
-      before_install:
-        # Upgrade Yarn
-        - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version ${YARN_VERSION}
-        - export PATH="$HOME/.yarn/bin:$PATH"
-        # Start Junkstarter App
-        - docker-compose up --build -d
-        - cd app/frontend
-      script:
-        - yarn cypress:run
-      after_script:
-        - docker-compose down
 
 notifications:
   slack:
